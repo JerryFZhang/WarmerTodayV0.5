@@ -9,7 +9,19 @@ An web based weather app for the user to retrieve weather information
 
 ## Quick Start
 
-####For MAC user
+####For dev user
+
+Prerequist: install nodejs (v6.11.0), mongo db
+
+First, go to the repo folder in terminal and run:
+1. `npm install`
+
+Second, start an server instance
+2. `npm start`
+
+
+
+####For MAC user (Deployment env)
 
 First install nodeJS into your PC:
 1. `$ brew update`
