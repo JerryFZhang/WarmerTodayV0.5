@@ -43,7 +43,6 @@ ul > li {
 ul li a {
 	line-height: 80px;
 	padding: 0 20px;
-	height: 80px;
 	color: #777;
 	-webkit-transition: all .1s ease-out;
 	-moz-transition: all .1s ease-out;

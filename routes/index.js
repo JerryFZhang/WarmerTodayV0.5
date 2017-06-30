@@ -11,6 +11,11 @@ const forecast = new DarkSky('a663e12e77b9cfe68f9151767de5a597')
 router.get('/', function (req, res, next) {
   res.render('signinup', { title: 'Express' })
 })
+
+router.get('/hack', function (req, res, next) {
+  res.render('index', { title: 'Express' })
+})
+
 router.post('/today', function (req, res) {
   let now = new Date()
     // date, string 'YYYY-MM-DD'.
