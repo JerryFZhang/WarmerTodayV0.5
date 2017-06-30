@@ -1,13 +1,15 @@
 var express = require('express')
 var router = express.Router()
 const DarkSky = require('dark-sky')
+//https://www.npmjs.com/package/node-geocoder
+var NodeGeocoder = require('node-geocoder')
 
 // Use synchronous JavaScript call to fetch API id stored in forecast.txt.
 // Use API id fetched from file system.
 const forecast = new DarkSky('a663e12e77b9cfe68f9151767de5a597')
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' })
+  res.render('signinup', { title: 'Express' })
 })
 router.post('/today', function (req, res) {
   let now = new Date()
