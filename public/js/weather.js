@@ -3,10 +3,10 @@ $.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUx
   let lat, lng
   lat = parseFloat(JSON.stringify(data.location.lat))
   lng = parseFloat(JSON.stringify(data.location.lng))
-  $('p.location').replaceWith('')
+  $('span.location').replaceWith('')
   getWeather(lat, lng)
   $.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE', function (data) {
-    var locationHTML = '<span style="font-size:3.5vw;">' + data.results[0].address_components[3].long_name + ', ' + data.results[0].address_components[5].long_name + '</span><br/>'
+    var locationHTML = '<span">' + data.results[0].address_components[3].long_name + ', ' + data.results[0].address_components[5].long_name + '</span><br/>'
     $('span.location2').replaceWith(locationHTML)
         // var results = data.results;
   })
@@ -44,7 +44,7 @@ function getWeather (lat, lng) {
                 //        Print extremas
     console.log(data.daily.data[0].summary.temperatureMax + ' is current high ' + data.daily.data[0].summary.temperatureMin + 'is current low.')
                 // Delete the warning message, replace with currentn wather information.
-    $('p.inner').replaceWith('<h2 style="float: right;  font-size: 3.5vw;">' + roundTemp(data.currently.temperature) + ' Cº' + '<br style="clear:both" />' + '<p style="float: right;  font-size: 2vw;">' + 'H: ' + roundTemp(data.daily.data[0].temperatureMax) + ' Cº ' + 'L: ' + roundTemp(data.daily.data[0].temperatureMin) + ' Cº</p>' + '<br/>'); $('span.sum').replaceWith('<span style="font-weight: normal; font-size: 3.5vw;">' + data.currently.summary + '</span>')
+    $('span.inner').replaceWith('<span>' + roundTemp(data.currently.temperature) + ' Cº</span><br/><span>' + 'H: ' + roundTemp(data.daily.data[0].temperatureMax) + ' Cº ' + 'L: ' + roundTemp(data.daily.data[0].temperatureMin) + ' Cº</span>'); $('span.sum').replaceWith('<span>' + data.currently.summary + '</span>')
   })
 }
 
