@@ -1,178 +1,493 @@
-*, *:before, *:after {
+/* -------------------------------- 
+
+Primary style
+
+-------------------------------- */
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-html {
-  overflow-y: scroll;
-}
-
 body {
-  background: #c1bdba;
-  font-family: 'Titillium Web', sans-serif;
+  font-size: 100%;
+  font-family: "PT Sans", sans-serif;
+  color: #505260;
+  background-color: #fff;
 }
 
 a {
+  color: #2f889a;
   text-decoration: none;
-  color: #1ab188;
-  -webkit-transition: .5s ease;
-  transition: .5s ease;
-}
-a:hover {
-  color: #179b77;
 }
 
-.form {
-  background: rgba(19, 35, 47, 0.9);
-  padding: 40px;
-  max-width: 600px;
-  margin: 40px auto;
-  border-radius: 4px;
-  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
-}
-
-.tab-group {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 40px 0;
-}
-.tab-group:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.tab-group li a {
-  display: block;
-  text-decoration: none;
-  padding: 15px;
-  background: rgba(160, 179, 176, 0.25);
-  color: #a0b3b0;
-  font-size: 20px;
-  float: left;
-  width: 50%;
-  text-align: center;
-  cursor: pointer;
-  -webkit-transition: .5s ease;
-  transition: .5s ease;
-}
-.tab-group li a:hover {
-  background: #179b77;
-  color: #ffffff;
-}
-.tab-group .active a {
-  background: #1ab188;
-  color: #ffffff;
-}
-
-.tab-content > div:last-child {
-  display: none;
-}
-
-h1 {
-  text-align: center;
-  color: #ffffff;
-  font-weight: 300;
-  margin: 0 0 40px;
-}
-
-label {
-  position: absolute;
-  -webkit-transform: translateY(6px);
-          transform: translateY(6px);
-  left: 13px;
-  color: rgba(255, 255, 255, 0.5);
-  -webkit-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-  -webkit-backface-visibility: hidden;
-  pointer-events: none;
-  font-size: 22px;
-}
-label .req {
-  margin: 2px;
-  color: #1ab188;
-}
-
-label.active {
-  -webkit-transform: translateY(50px);
-          transform: translateY(50px);
-  left: 2px;
-  font-size: 14px;
-}
-label.active .req {
-  opacity: 0;
-}
-
-label.highlight {
-  color: #ffffff;
+img {
+  max-width: 100%;
 }
 
 input, textarea {
-  font-size: 22px;
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 5px 10px;
-  background: none;
-  background-image: none;
-  border: 1px solid #a0b3b0;
-  color: #ffffff;
-  border-radius: 0;
-  -webkit-transition: border-color .25s ease, box-shadow .25s ease;
-  transition: border-color .25s ease, box-shadow .25s ease;
+  font-family: "PT Sans", sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
 }
-input:focus, textarea:focus {
-  outline: 0;
-  border-color: #1ab188;
+input::-ms-clear, textarea::-ms-clear {
+  display: none;
 }
 
-textarea {
-  border: 2px solid #a0b3b0;
-  resize: vertical;
-}
+/* -------------------------------- 
 
-.field-wrap {
+Main components 
+
+-------------------------------- */
+header[role=banner] {
   position: relative;
-  margin-bottom: 40px;
+  height: 50px;
+  background: #343642;
 }
-
-.top-row:after {
-  content: "";
+header[role=banner] #cd-logo {
+  float: left;
+  margin: 4px 0 0 5%;
+  /* reduce logo size on mobile and make sure it is left aligned with the transform-origin property */
+  -webkit-transform-origin: 0 50%;
+  -moz-transform-origin: 0 50%;
+  -ms-transform-origin: 0 50%;
+  -o-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  -o-transform: scale(0.8);
+  transform: scale(0.8);
+}
+header[role=banner] #cd-logo img {
+  display: block;
+}
+header[role=banner]::after {
+  /* clearfix */
+  content: '';
   display: table;
   clear: both;
 }
-.top-row > div {
+@media only screen and (min-width: 768px) {
+  header[role=banner] {
+    height: 80px;
+  }
+  header[role=banner] #cd-logo {
+    margin: 20px 0 0 5%;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.main-nav {
+  float: right;
+  margin-right: 5%;
+  width: 44px;
+  height: 100%;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-menu.svg") no-repeat center center;
+  cursor: pointer;
+}
+.main-nav ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+.main-nav ul.is-visible {
+  -webkit-transform: translateY(50px);
+  -moz-transform: translateY(50px);
+  -ms-transform: translateY(50px);
+  -o-transform: translateY(50px);
+  transform: translateY(50px);
+}
+.main-nav a {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 5%;
+  background: #292a34;
+  border-top: 1px solid #3b3d4b;
+  color: #FFF;
+}
+@media only screen and (min-width: 768px) {
+  .main-nav {
+    width: auto;
+    height: auto;
+    background: none;
+    cursor: auto;
+  }
+  .main-nav ul {
+    position: static;
+    width: auto;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    line-height: 80px;
+  }
+  .main-nav ul.is-visible {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  .main-nav li {
+    display: inline-block;
+    margin-left: 1em;
+  }
+  .main-nav li:nth-last-child(2) {
+    margin-left: 2em;
+  }
+  .main-nav a {
+    display: inline-block;
+    height: auto;
+    line-height: normal;
+    background: transparent;
+  }
+  .main-nav a.cd-signin, .main-nav a.cd-signup {
+    padding: .6em 1em;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50em;
+  }
+  .main-nav a.cd-signup {
+    background: #2f889a;
+    border: none;
+  }
+}
+
+/* -------------------------------- 
+
+xsigin/signup popup 
+
+-------------------------------- */
+.cd-user-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(52, 54, 66, 0.9);
+  z-index: 3;
+  overflow-y: auto;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s 0, visibility 0 0.3s;
+  -moz-transition: opacity 0.3s 0, visibility 0 0.3s;
+  transition: opacity 0.3s 0, visibility 0 0.3s;
+}
+.cd-user-modal.is-visible {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s 0, visibility 0 0;
+  -moz-transition: opacity 0.3s 0, visibility 0 0;
+  transition: opacity 0.3s 0, visibility 0 0;
+}
+.cd-user-modal.is-visible .cd-user-modal-container {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.cd-user-modal-container {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  background: #FFF;
+  margin: 3em auto 4em;
+  cursor: auto;
+  border-radius: 0.25em;
+  -webkit-transform: translateY(-30px);
+  -moz-transform: translateY(-30px);
+  -ms-transform: translateY(-30px);
+  -o-transform: translateY(-30px);
+  transform: translateY(-30px);
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.cd-user-modal-container .cd-switcher::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.cd-user-modal-container .cd-switcher li {
+  width: 50%;
   float: left;
-  width: 48%;
-  margin-right: 4%;
+  text-align: center;
 }
-.top-row > div:last-child {
-  margin: 0;
+.cd-user-modal-container .cd-switcher li:first-child a {
+  border-radius: .25em 0 0 0;
 }
-
-.button {
-  border: 0;
-  outline: none;
-  border-radius: 0;
-  padding: 15px 0;
-  font-size: 2rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  background: #1ab188;
-  color: #ffffff;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  -webkit-appearance: none;
+.cd-user-modal-container .cd-switcher li:last-child a {
+  border-radius: 0 .25em 0 0;
 }
-.button:hover, .button:focus {
-  background: #179b77;
-}
-
-.button-block {
+.cd-user-modal-container .cd-switcher a {
   display: block;
   width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #d2d8d8;
+  color: #809191;
+}
+.cd-user-modal-container .cd-switcher a.selected {
+  background: #FFF;
+  color: #505260;
+}
+@media only screen and (min-width: 600px) {
+  .cd-user-modal-container {
+    margin: 4em auto;
+  }
+  .cd-user-modal-container .cd-switcher a {
+    height: 70px;
+    line-height: 70px;
+  }
 }
 
-.forgot {
-  margin-top: -20px;
-  text-align: right;
+.cd-form {
+  padding: 1.4em;
+}
+.cd-form .fieldset {
+  position: relative;
+  margin: 1.4em 0;
+}
+.cd-form .fieldset:first-child {
+  margin-top: 0;
+}
+.cd-form .fieldset:last-child {
+  margin-bottom: 0;
+}
+.cd-form label {
+  font-size: 14px;
+  font-size: 0.875rem;
+}
+.cd-form label.image-replace {
+  /* replace text with an icon */
+  display: inline-block;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  height: 20px;
+  width: 20px;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  color: transparent;
+  text-shadow: none;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+}
+.cd-form label.cd-username {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-username.svg");
+}
+.cd-form label.cd-email {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-email.svg");
+}
+.cd-form label.cd-password {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-password.svg");
+}
+.cd-form input {
+  margin: 0;
+  padding: 0;
+  border-radius: 0.25em;
+}
+.cd-form input.full-width {
+  width: 100%;
+}
+.cd-form input.has-padding {
+  padding: 12px 20px 12px 50px;
+}
+.cd-form input.has-border {
+  border: 1px solid #d2d8d8;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+.cd-form input.has-border:focus {
+  border-color: #343642;
+  box-shadow: 0 0 5px rgba(52, 54, 66, 0.1);
+  outline: none;
+}
+.cd-form input.has-error {
+  border: 1px solid #d76666;
+}
+.cd-form input[type=password] {
+  /* space left for the HIDE button */
+  padding-right: 65px;
+}
+.cd-form input[type=submit] {
+  padding: 16px 0;
+  cursor: pointer;
+  background: #2f889a;
+  color: #FFF;
+  font-weight: bold;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+.no-touch .cd-form input[type=submit]:hover, .no-touch .cd-form input[type=submit]:focus {
+  background: #3599ae;
+  outline: none;
+}
+.cd-form .hide-password {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 6px 15px;
+  border-left: 1px solid #d2d8d8;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 14px;
+  font-size: 0.875rem;
+  color: #343642;
+}
+.cd-form .cd-error-message {
+  display: inline-block;
+  position: absolute;
+  left: -5px;
+  bottom: -35px;
+  background: rgba(215, 102, 102, 0.9);
+  padding: .8em;
+  z-index: 2;
+  color: #FFF;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  border-radius: 0.25em;
+  /* prevent click and touch events */
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s 0, visibility 0 0.2s;
+  -moz-transition: opacity 0.2s 0, visibility 0 0.2s;
+  transition: opacity 0.2s 0, visibility 0 0.2s;
+}
+.cd-form .cd-error-message::after {
+  /* triangle */
+  content: '';
+  position: absolute;
+  left: 22px;
+  bottom: 100%;
+  height: 0;
+  width: 0;
+  border-bottom: 8px solid rgba(215, 102, 102, 0.9);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+.cd-form .cd-error-message.is-visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.2s 0, visibility 0 0;
+  -moz-transition: opacity 0.2s 0, visibility 0 0;
+  transition: opacity 0.2s 0, visibility 0 0;
+}
+@media only screen and (min-width: 600px) {
+  .cd-form {
+    padding: 2em;
+  }
+  .cd-form .fieldset {
+    margin: 2em 0;
+  }
+  .cd-form .fieldset:first-child {
+    margin-top: 0;
+  }
+  .cd-form .fieldset:last-child {
+    margin-bottom: 0;
+  }
+  .cd-form input.has-padding {
+    padding: 16px 20px 16px 50px;
+  }
+  .cd-form input[type=submit] {
+    padding: 16px 0;
+  }
+}
+
+.cd-form-message {
+  padding: 1.4em 1.4em 0;
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-align: center;
+}
+@media only screen and (min-width: 600px) {
+  .cd-form-message {
+    padding: 2em 2em 0;
+  }
+}
+
+.cd-form-bottom-message {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -30px;
+  text-align: center;
+  font-size: 14px;
+  font-size: 0.875rem;
+}
+.cd-form-bottom-message a {
+  color: #FFF;
+  text-decoration: underline;
+}
+
+.cd-close-form {
+  /* form X button on top right */
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  right: 0;
+  top: -40px;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-close.svg") no-repeat center center;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+@media only screen and (min-width: 1170px) {
+  .cd-close-form {
+    display: none;
+  }
+}
+
+#cd-login, #cd-signup, #cd-reset-password {
+  display: none;
+}
+
+#cd-login.is-selected, #cd-signup.is-selected, #cd-reset-password.is-selected {
+  display: block;
 }
