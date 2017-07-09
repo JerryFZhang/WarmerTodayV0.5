@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Graph</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <div class="container testimonial-group">
+      <div class="row text-center" id="forecastDay" style="padding-top:300px">
+
+      </div>
+    </div>
+    <iframe id="forecast_embed" type="text/html" frameborder="0" height="245"
+    width="100%"
+    src="http://forecast.io/embed/#lat=42.3583&lon=-71.0603&name=Downtown Boston">
+    </iframe>
+
+    <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
+    <iframe width='100%' frameBorder='0' style='height: 95vh' src='https://maps.darksky.net/@temperature,45.421,-75.690,7,11?embed=true&timeControl=true&fieldControl=true&defaultField=temperature&defaultUnits=_c'></iframe>
+<style>
+
+/*scrollable css*/
+/* The heart of the matter */
+.testimonial-group > .row {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.testimonial-group > .row > .col-xs-4 {
+  display: inline-block;
+  float: none;
+  overflow-y: auto;
+  height:300px;
+  width:10%;
+}
+/*.row.equal {
+    display: flex;
+
+  }*/
+/* Decorations */
+.col-xs-4 { color: #fff; }
+.col-xs-4:nth-child(3n+1) { background: #c69;}
+.col-xs-4:nth-child(3n+2) { background: #9c6;}
+.col-xs-4:nth-child(3n+3) { background: #69c;}
+/*scrollable css*/
+</style>
+<script>
+
+//dynamically set skycons by class name
+var list  = [
+          "clear-day", "clear-night", "partly-cloudy-day",
+          "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+          "fog"
+        ]
+//dynamically set skycons by class name
+//functions that adding hour info
+
+
+//testing
+var weather = [{temperature:0,icon:"rain"},{temperature:10,icon:"cloudy"},{temperature:20,icon:"snow"},{temperature:30,icon:"wind"},{temperature:25,icon:"clear-day"}]
+for(var a = 0;a<24;a++){
+  var temp = Math.floor(Math.random() * (40 - (-40) + 1)) -40
+  var index = Math.floor(Math.random() * (9 - 0 + 1)) + 0
+  weather.push({temperature:temp,icon:list[index]})
+}
+//testing
+
+/*
+unit can be "c" "C" "f" "F"
+*/
+function renderingHourInfo(weather,unit){
+  var celsius = "&#8451;"
+  var fahrenheit = "&#8457;"
+
+  var tunit = celsius
+  if(unit ==="c"||unit==="C"){
+    tunit = celsius
+  }
+  if(unit ==="f"||unit==="F"){
+    tunit = fahrenheit
+  }
+
+
+  //calculate average temp
+  var sum=0
+  var min=weather[0].temperature
+  var max=weather[0].temperature
+  for(let x of weather){
+      if(x.temperature<min){
+        min=x.temperature
+      }
+      if(x.temperature>max){
+        max=x.temperature
+      }
+      sum+=x.temperature
+  }
+  var avg = sum/24
+  var height = 0.00
+  for(var i =0;i<weather.length;i++){
+      console.log(i);
+      console.log(weather[i]);
+      height = (1-(weather[i].temperature-min)/(max-min))*200
+      if(i<12){
+        $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">"+(i+1)+"AM</div><div class=\"row\" style=\"padding-top:"+height+"px\"><canvas class=\""+weather[i].icon+"\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">"+weather[i].temperature+""+tunit+"</div></div><!---->");
+      }else{
+        $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">"+(i+1-12)+"PM</div><div class=\"row\" style=\"padding-top:"+height+"px\"><canvas class=\""+weather[i].icon+"\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">"+weather[i].temperature+""+tunit+"</div></div><!---->");
+      }
+  }
+
+  var icons = new Skycons({"color": "white"}),
+  list  = [
+            "clear-day", "clear-night", "partly-cloudy-day",
+            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+            "fog"
+          ],
+          i;
+  for(i = list.length; i--; ) {
+      var weatherType = list[i],
+          elements = document.getElementsByClassName( weatherType );
+      for (e = elements.length; e--;){
+          icons.set( elements[e], weatherType );
+      }
+  }
+  icons.play();
+}
+
+renderingHourInfo(weather,"f")
+//functions that adding hour info
+</script>
+    </body>
+
+
+</html>
