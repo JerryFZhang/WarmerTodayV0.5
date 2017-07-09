@@ -14,7 +14,12 @@
 
       </div>
     </div>
+    <iframe id="forecast_embed" type="text/html" frameborder="0" height="245"
+    width="100%"
+    src="http://forecast.io/embed/#lat=42.3583&lon=-71.0603&name=Downtown Boston">
+    </iframe>
 
+    <iframe width='100%' frameBorder='0' style='height: 95vh' src='https://maps.darksky.net/@temperature,-41.2865,174.7762,4?embed=true&timeControl=true&fieldControl=false&defaultField=temperature&defaultUnits=_c'></iframe>
     <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
 <style>
 
@@ -64,8 +69,22 @@ for(var a = 0;a<24;a++){
 }
 //testing
 
+/*
+unit can be "c" "C" "f" "F"
+*/
+function renderingHourInfo(weather,unit){
+  var celsius = "&#8451;"
+  var fahrenheit = "&#8457;"
 
-function renderingHourInfo(weather){
+  var tunit = celsius
+  if(unit ==="c"||unit==="C"){
+    tunit = celsius
+  }
+  if(unit ==="f"||unit==="F"){
+    tunit = fahrenheit
+  }
+
+
   //calculate average temp
   var sum=0
   var min=weather[0].temperature
@@ -86,9 +105,9 @@ function renderingHourInfo(weather){
       console.log(weather[i]);
       height = (1-(weather[i].temperature-min)/(max-min))*200
       if(i<12){
-        $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">"+(i+1)+"AM</div><div class=\"row\" style=\"padding-top:"+height+"px\"><canvas class=\""+weather[i].icon+"\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">"+weather[i].temperature+"&#8451;</div></div><!---->");
+        $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">"+(i+1)+"AM</div><div class=\"row\" style=\"padding-top:"+height+"px\"><canvas class=\""+weather[i].icon+"\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">"+weather[i].temperature+""+tunit+"</div></div><!---->");
       }else{
-        $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">"+(i+1-12)+"PM</div><div class=\"row\" style=\"padding-top:"+height+"px\"><canvas class=\""+weather[i].icon+"\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">"+weather[i].temperature+"&#8451;</div></div><!---->");
+        $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">"+(i+1-12)+"PM</div><div class=\"row\" style=\"padding-top:"+height+"px\"><canvas class=\""+weather[i].icon+"\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">"+weather[i].temperature+""+tunit+"</div></div><!---->");
       }
   }
 
@@ -109,7 +128,7 @@ function renderingHourInfo(weather){
   icons.play();
 }
 
-renderingHourInfo(weather)
+renderingHourInfo(weather,"f")
 //functions that adding hour info
 </script>
     </body>
