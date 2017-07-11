@@ -4,10 +4,11 @@ var favicon = require('serve-favicon')
 var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
-
+var mongojs = require('mongojs')
+var db = mongojs('weather', ['user'])
 var index = require('./routes/index')
 var users = require('./routes/users')
-
+var session = require('client-sessions')
 var app = express()
 
 // view engine setup
@@ -21,9 +22,19 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+// db init
+createCollection('user')
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  cookieName: 'session',
+  secret: 'blahlbalhslasdlaisdjalisjd',
+  duration: 60 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000
+}))
 
 app.use('/', index)
-app.use('/users', isAuthenticated, users)
+app.use('/user', isAuthenticated, users)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -42,6 +53,16 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error')
 })
+
+function createCollection (name) {
+  db.createCollection(name, function (err) {
+    if (err) {
+      console.log('create collection:' + name + ' error!')
+    } else {
+      console.log('create collection:' + name + ' success!')
+    }
+  })
+}
 
 function isAuthenticated (req, res, next) {
     // do any checks you want to in here
