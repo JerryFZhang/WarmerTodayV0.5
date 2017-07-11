@@ -1,14 +1,22 @@
 var express = require('express')
 var path = require('path')
 var favicon = require('serve-favicon')
-var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
-
+var mongojs = require('mongojs')
+var db = mongojs('weather', ['user'])
 var index = require('./routes/index')
 var users = require('./routes/users')
-
+var session = require('client-sessions')
 var app = express()
+
+// logs
+const log4js = require('log4js')
+log4js.loadAppender('file')
+log4js.addAppender(log4js.appenders.file('WeatherApp.log'), 'WeatherApp')
+var logger = log4js.getLogger('WeatherApp')
+logger.setLevel('INFO')
+// logs
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -21,9 +29,19 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+// db init
+createCollection('user')
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  cookieName: 'session',
+  secret: 'blahlbalhslasdlaisdjalisjd',
+  duration: 60 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000
+}))
 
 app.use('/', index)
-app.use('/users', isAuthenticated, users)
+app.use('/user', isAuthenticated, users)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -43,12 +61,23 @@ app.use(function (err, req, res, next) {
   res.render('error')
 })
 
+function createCollection (name) {
+  db.createCollection(name, function (err) {
+    if (err) {
+      logger.error('create collection:' + name + ' error!')
+      // console.log('create collection:' + name + ' error!')
+    } else {
+      logger.info('create collection:' + name + ' success!')
+    }
+  })
+}
+
 function isAuthenticated (req, res, next) {
     // do any checks you want to in here
 
     // CHECK THE USER STORED IN SESSION FOR A CUSTOM VARIABLE
     // you can do this however you want with whatever variables you set up
-  if (req.user.authenticated) {
+  if (req.session && req.session.user && req.session.user.authenticated) {
     return next()
   }
 
