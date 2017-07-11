@@ -13,6 +13,15 @@ var smtpTransport = require('nodemailer-smtp-transport')
 // Use API id fetched from file system.
 const forecast = new DarkSky('a663e12e77b9cfe68f9151767de5a597')
 const deployAddress = 'http://localhost:3000/activation/'
+
+// logs
+const log4js = require('log4js')
+log4js.loadAppender('file')
+log4js.addAppender(log4js.appenders.file('WeatherIndex.log'), 'WeatherIndex')
+var logger = log4js.getLogger('WeatherIndex')
+logger.setLevel('INFO')
+// logs
+
 // set up smtp service
 var transporter = nodemailer.createTransport(smtpTransport({
   host: 'mail.smtp2go.com',
@@ -24,16 +33,18 @@ var transporter = nodemailer.createTransport(smtpTransport({
 }))
 transporter.verify(function (error, success) {
   if (error) {
-    console.log(error)
+    logger.error('transporter error: ' + error)
+    // console.log(error)
   } else {
-    console.log('Server is ready to take our messages')
+    // console.log('Server is ready to take our messages')
+    logger.info('Server is ready to take our messages')
   }
 })
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.send(true)
-  // res.render('signinup', { title: 'Express' })
+  // res.send(true)
+  res.render('signinup', { title: 'Express' })
 })
 
 router.get('/hack', function (req, res, next) {
@@ -72,10 +83,13 @@ router.get('/activation', function (req, res, next) {
     new: false
   }, function (err, doc, lastErrorObject) {
     if (err) {
-      console.log(err)
+      logger.error('user activation error: ' + err)
+
+      // console.log(err)
     }
     if (doc) {
-      console.log('activation success ', doc)
+      logger.info('activation success ', doc)
+      // console.log('activation success ', doc)
       req.session.user = {firstName: doc.firstName, lastName: doc.lastName, email: doc.email, authenticated: true}
       // res.render('index', {firstName: doc.firstName, lastName: doc.lastName, email: doc.email})
       res.redirect('/user')
@@ -92,12 +106,16 @@ router.post('/login', function (req, res) {
     // Query Body
   db.user.findOne(data, function (err, doc) {
     if (err) {
-      console.log(err)
+      logger.error('login error: ' + err)
+      // console.log(err)
+      // res.redirect('/')
     }
     if (doc) {
       // login success
       req.session.user = {firstName: doc.firstName, lastName: doc.lastName, email: doc.email, authenticated: true}
       res.redirect('/user')
+    } else {
+      res.send(false)
     }
   })
 })
@@ -124,7 +142,8 @@ router.post('/signup', function (req, res) {
     safe: true
   }, function (err, docs) {
     if (err) {
-      console.log('err')
+      logger.error('user signup error: ' + err)
+      // console.log('err')
     }
   })
 // smtp send email
@@ -135,9 +154,11 @@ router.post('/signup', function (req, res) {
     text: 'Please click the activation link: ' + deployAddress + '?token=' + token
   }, function (error, response) {
     if (error) {
-      console.log(error)
+      logger.error('user signup send email error: ' + error)
+      // console.log(error)
     } else {
-      console.log('Message sent')
+      logger.info('Message sent')
+      // console.log('Message sent')
     }
   })
 })
@@ -158,10 +179,11 @@ router.post('/today', function (req, res) {
     .get()                          // execute your get request.
     .then(weather => {                  // handle your success response.
       res.send(weather)
-      console.log(weather)
+      // console.log(weather)
     })
     .catch(err => {                 // handle your error response.
-      console.log(err)
+      logger.error('/today error: ' + err)
+      // console.log(err)
     })
 })
 module.exports = router
