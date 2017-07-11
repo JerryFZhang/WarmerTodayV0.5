@@ -40,37 +40,24 @@
     <title>Weather </title>
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" type="text/css" href="css/navigationMenu.css" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <!--    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
     <script src="js/weather.js"></script>
 </head>
 
 <body>
-    <!--
-<nav>
-<ul>
-<li><a href="#">View</a></li>
-<li class="drop"> <a href="#">You</a>
-<div class="dropdownContain">
-<div class="dropOut">
-<div class="triangle"></div>
-<ul>
-<li>Sign In/Up</li>
-</ul>
-</div>
-</div>
-</li>
-<li><a href="#">Help</a></li>
-</ul>
-</nav>
--->
+    
+
+
     <div>
         <div class="col-xs-12 col-sm-6 col-md-8"> <span class="location2">Loading location</span> <span class="sum">Loading summary</span> </div>
-        <div class="col-xs-6 col-md-4"> <span class="inner">Loading weather information.</p>
-                <span class="location">Loading location.</p>
+        <div class="col-xs-6 col-md-4"> <span class="inner">Loading weather information.</span>
+                <span class="location">Loading location.</span>
             </div>
             <div>
                 <ul class="nav nav-tabs">
@@ -82,23 +69,112 @@
             </div>
             <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
-                    <h3>HOME</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="container testimonial-group">
+                        <div class="row text-center" id="forecastDay" style="padding-top:300px top:0px"></div>
+                </div>
                 </div>
                 <div id="menu1" class="tab-pane fade">
-                    <h3>Menu 1</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+<div class="container testimonial-group">
+                        <div class="row text-center" id="forecastDay" style="padding-top:300px top:0px"></div>
+                </div>
                 </div>
                 <div id="menu2" class="tab-pane fade">
-                    <h3>Menu 2</h3>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                                        <div class="container testimonial-group">
+                        <div class="row text-center" id="forecastDay" style="padding-top:300px top:0px">
+                        </div>
+                </div>
                 </div>
                 <div id="menu3" class="tab-pane fade">
-                    <h3>Menu 3</h3>
-                    <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                                        <div class="container testimonial-group">
+                        <div class="row text-center" id="forecastDay" style="padding-top:300px top:0px">
+                        </div>
+                </div>
                 </div>
             </div>
         </div>
 
     </body>
+<script>
+
+//dynamically set skycons by class name
+var list  = [
+          "clear-day", "clear-night", "partly-cloudy-day",
+          "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+          "fog"
+        ]
+//dynamically set skycons by class name
+//functions that adding hour info
+
+
+//testing
+var weather = [{temperature:0,icon:"rain"},{temperature:10,icon:"cloudy"},{temperature:20,icon:"snow"},{temperature:30,icon:"wind"},{temperature:25,icon:"clear-day"}]
+for(var a = 0;a<24;a++){
+  var temp = Math.floor(Math.random() * (40 - (-40) + 1)) -40
+  var index = Math.floor(Math.random() * (9 - 0 + 1)) + 0
+  weather.push({temperature:temp,icon:list[index]})
+}
+//testing
+
+/*
+unit can be "c" "C" "f" "F"
+*/
+function renderingHourInfo(weather,unit){
+  var celsius = "&#8451;"
+  var fahrenheit = "&#8457;"
+
+  var tunit = celsius
+  if(unit ==="c"||unit==="C"){
+    tunit = celsius
+  }
+  if(unit ==="f"||unit==="F"){
+    tunit = fahrenheit
+  }
+
+
+  //calculate average temp
+  var sum=0
+  var min=weather[0].temperature
+  var max=weather[0].temperature
+  for(let x of weather){
+      if(x.temperature<min){
+        min=x.temperature
+      }
+      if(x.temperature>max){
+        max=x.temperature
+      }
+      sum+=x.temperature
+  }
+  var avg = sum/24
+  var height = 0.00
+  for(var i =0;i<weather.length;i++){
+      console.log(i);
+      console.log(weather[i]);
+      height = (1-(weather[i].temperature-min)/(max-min))*200
+      if(i<12){
+        $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">"+(i+1)+"AM</div><div class=\"row\" style=\"padding-top:"+height+"px\"><canvas class=\""+weather[i].icon+"\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">"+weather[i].temperature+""+tunit+"</div></div><!---->");
+      }else{
+        $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">"+(i+1-12)+"PM</div><div class=\"row\" style=\"padding-top:"+height+"px\"><canvas class=\""+weather[i].icon+"\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">"+weather[i].temperature+""+tunit+"</div></div><!---->");
+      }
+  }
+
+  var icons = new Skycons({"color": "black"}),
+  list  = [
+            "clear-day", "clear-night", "partly-cloudy-day",
+            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+            "fog"
+          ],
+          i;
+  for(i = list.length; i--; ) {
+      var weatherType = list[i],
+          elements = document.getElementsByClassName( weatherType );
+      for (e = elements.length; e--;){
+          icons.set( elements[e], weatherType );
+      }
+  }
+  icons.play();
+}
+
+renderingHourInfo(weather,"f")
+//functions that adding hour info
+</script>
 </html>
