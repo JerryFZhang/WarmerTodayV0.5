@@ -1,5 +1,12 @@
 var express = require('express')
 var router = express.Router()
+// logs
+const log4js = require('log4js')
+log4js.loadAppender('file')
+log4js.addAppender(log4js.appenders.file('/logs/WeatherUser.log'), 'WeatherUser')
+var logger = log4js.getLogger('WeatherUser')
+logger.setLevel('INFO')
+// logs
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -10,7 +17,7 @@ router.get('/', function (req, res, next) {
 router.get('/logout', function (req, res) {
   req.session.destroy(function (err) {
     if (err) {
-      console.log(err)
+      logger.error('logout: ' + err)
     } else {
       sess = undefined
       res.render('index')
@@ -25,10 +32,10 @@ router.post('/resetpwd', function (req, res, next) {
     new: false
   }, function (err, doc, lastErrorObject) {
     if (err) {
-      console.log(err)
+      logger.error('resetpwd: ' + err)
     }
     if (doc) {
-      console.log('activation success ', doc)
+      logger.info('reset success: ' + err)
       req.session.user = {firstName: doc.firstName, lastName: doc.lastName, email: doc.email, authenticated: true}
       // res.render('index', {firstName: doc.firstName, lastName: doc.lastName, email: doc.email})
       res.redirect('/user')
@@ -42,10 +49,10 @@ router.post('/resetusername', function (req, res, next) {
     new: false
   }, function (err, doc, lastErrorObject) {
     if (err) {
-      console.log(err)
+      logger.error('resetusername: ' + err)
     }
     if (doc) {
-      console.log('activation success ', doc)
+      logger.info('resetusername: success ')
       req.session.user = {firstName: doc.firstName, lastName: doc.lastName, email: doc.email, authenticated: true}
       // res.render('index', {firstName: doc.firstName, lastName: doc.lastName, email: doc.email})
       res.redirect('/user')
@@ -58,7 +65,7 @@ router.get('/usercities', function (req, res, next) {
     email: req.session.user.email
   }, function (err, doc) {
     if (doc) {
-      console.log('user found ', doc)
+      logger.info('user found ', doc)
       res.send(doc.cities)
     }
   })

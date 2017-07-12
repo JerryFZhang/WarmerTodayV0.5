@@ -13,7 +13,7 @@ var app = express()
 // logs
 const log4js = require('log4js')
 log4js.loadAppender('file')
-log4js.addAppender(log4js.appenders.file('WeatherApp.log'), 'WeatherApp')
+log4js.addAppender(log4js.appenders.file('logs/WeatherApp.log'), 'WeatherApp')
 var logger = log4js.getLogger('WeatherApp')
 logger.setLevel('INFO')
 // logs
@@ -24,7 +24,7 @@ app.set('view engine', 'ejs')
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'))
+// app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
