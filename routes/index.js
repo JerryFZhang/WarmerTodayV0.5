@@ -17,7 +17,7 @@ const deployAddress = 'http://localhost:3000/activation/'
 // logs
 const log4js = require('log4js')
 log4js.loadAppender('file')
-log4js.addAppender(log4js.appenders.file('WeatherIndex.log'), 'WeatherIndex')
+log4js.addAppender(log4js.appenders.file('/logs/WeatherIndex.log'), 'WeatherIndex')
 var logger = log4js.getLogger('WeatherIndex')
 logger.setLevel('INFO')
 // logs
