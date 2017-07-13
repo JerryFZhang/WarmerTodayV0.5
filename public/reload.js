@@ -76,7 +76,7 @@
   }
 
   function processDate (dateString) {
-    var d = new Date(dateString*1000)
+    var d = new Date(dateString * 1000)
     var n = d.toString()
     var res = n.split(' ')
     return res
@@ -190,10 +190,10 @@
       // console.log(i)
       // console.log(weather[i])
       height = (1 - (weather[i].temperature - min) / (max - min)) * 200
-      if (i < 12) {
-        $('#forecastDay').append('<div class="col-xs-4"><div class="row">' + (i + 1) + 'AM</div><div class="row" style="padding-top:' + height + 'px"><canvas class="' + weather[i].icon + '" width="50" height="50"></canvas></div><div class="row">' + roundTemp(weather[i].temperature) + '' + tunit + '</div></div><!---->')
+      if (i % 24 < 12) {
+        $('#forecastDay').append('<div class="col-xs-4"><div class="row">' + (i + 1) % 12 + 'AM</div><div class="row" style="padding-top:' + height + 'px"><canvas class="' + weather[i].icon + '" width="50" height="50"></canvas></div><div class="row">' + roundTemp(weather[i].temperature) + '' + tunit + '</div></div><!---->')
       } else {
-        $('#forecastDay').append('<div class="col-xs-4"><div class="row">' + (i + 1 - 12) + 'PM</div><div class="row" style="padding-top:' + height + 'px"><canvas class="' + weather[i].icon + '" width="50" height="50"></canvas></div><div class="row">' + roundTemp(weather[i].temperature) + '' + tunit + '</div></div><!---->')
+        $('#forecastDay').append('<div class="col-xs-4"><div class="row">' + (i + 1 - 12) % 12 + 'PM</div><div class="row" style="padding-top:' + height + 'px"><canvas class="' + weather[i].icon + '" width="50" height="50"></canvas></div><div class="row">' + roundTemp(weather[i].temperature) + '' + tunit + '</div></div><!---->')
       }
     }
     var icons = new Skycons({
