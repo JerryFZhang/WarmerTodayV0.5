@@ -1,5 +1,7 @@
+var currentWeather
+
 $.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE', {}, function (data) {
-  console.log(data)
+  // console.log(data)
   let lat, lng
   lat = parseFloat(JSON.stringify(data.location.lat))
   lng = parseFloat(JSON.stringify(data.location.lng))
@@ -13,7 +15,7 @@ $.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUx
 })
 
 function roundTemp (data) {
-  console.log(data)
+  // console.log(data)
   return data.toFixed(0)
 }
 function parseHourlyData (data) {
@@ -31,18 +33,19 @@ function parseHourlyData (data) {
 
 function getWeather (lat, lng) {
   var currentHourlyData = []
-  console.log(lat)
-  console.log(lng)
+  // console.log(lat)
+  // console.log(lng)
   $.post('/today', {
     lat: lat,
     lng: lng
   }, function (data) {
     currentHourlyData = data.hourly.data
-    console.log(data)
-    console.log(data.daily.data[0].summary)
-    console.log(data.daily.data[0].summary)
-                //        Print extremas
-    console.log(data.daily.data[0].summary.temperatureMax + ' is current high ' + data.daily.data[0].summary.temperatureMin + 'is current low.')
+    console.log('data', data)
+    currentWeather = data
+    // console.log(data.daily.data[0].summary)
+    // console.log(data.daily.data[0].summary)
+    //             //        Print extremas
+    // console.log(data.daily.data[0].summary.temperatureMax + ' is current high ' + data.daily.data[0].summary.temperatureMin + 'is current low.')
                 // Delete the warning message, replace with currentn wather information.
     $('span.inner').replaceWith('<span>' + roundTemp(data.currently.temperature) + ' Cº</span><br/><span>' + 'H: ' + roundTemp(data.daily.data[0].temperatureMax) + ' Cº ' + 'L: ' + roundTemp(data.daily.data[0].temperatureMin) + ' Cº</span>'); $('span.sum').replaceWith('<span>' + data.currently.summary + '</span>')
   })

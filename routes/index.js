@@ -171,13 +171,14 @@ router.post('/today', function (req, res) {
   forecast
     .latitude(req.body.lat)            // required: latitude, string.
     .longitude(req.body.lng)          // required: longitude, string.
-    .time(requestedTime)             // optional: date, string 'YYYY-MM-DD'.
+    // .time(requestedTime)             // optional: date, string 'YYYY-MM-DD'.
     .units('ca')                    // optional: units, string, refer to API documentation.
     .language('en')                 // optional: language, string, refer to API documentation.
     .exclude('')      // optional: exclude, string, refer to API documentation.
     .extendHourly(true)             // optional: extend, boolean, refer to API documentation.
     .get()                          // execute your get request.
     .then(weather => {                  // handle your success response.
+      console.log(weather.daily);
       res.send(weather)
       // console.log(weather)
     })

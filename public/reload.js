@@ -119,7 +119,7 @@
   }
 
 // testing
-  renderingDayInfo(weather2, 'c')
+  // renderingDayInfo(weather2, 'c')
 // graph 2
 
 // graph 1
@@ -186,8 +186,8 @@
     var avg = sum / 24
     var height = 0.00
     for (var i = 0; i < weather.length; i++) {
-      console.log(i)
-      console.log(weather[i])
+      // console.log(i)
+      // console.log(weather[i])
       height = (1 - (weather[i].temperature - min) / (max - min)) * 200
       if (i < 12) {
         $('#forecastDay').append('<div class="col-xs-4"><div class="row">' + (i + 1) + 'AM</div><div class="row" style="padding-top:' + height + 'px"><canvas class="' + weather[i].icon + '" width="50" height="50"></canvas></div><div class="row">' + weather[i].temperature + '' + tunit + '</div></div><!---->')
@@ -213,6 +213,23 @@
     }
     icons.play()
   }
-  renderingHourInfo(weather, 'f')
+  // renderingHourInfo(weather, 'f')
       // functions that adding hour info
 // graph 1
+  var currentHourlyData, currentDayData
+
+  function reload (lat, lng, unit) {
+    $("#forecastDay").empty()
+    $("#compare").empty()
+    $.post('/today', {
+      lat: lat,
+      lng: lng
+    }, function (data) {
+      currentHourlyData = data.hourly.data
+      currentDayData = data.daily.data
+      renderingHourInfo(currentHourlyData, unit)
+      renderingDayInfo(currentDayData, unit)
+    })
+  }
+
+  reload(43.7111117, -79.2845772,'c')
