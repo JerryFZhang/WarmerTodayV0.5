@@ -90,7 +90,7 @@ router.get('/activation', function (req, res, next) {
     if (doc) {
       logger.info('activation success ', doc)
       // console.log('activation success ', doc)
-      req.session.user = {firstName: doc.firstName, lastName: doc.lastName, email: doc.email, authenticated: true}
+      req.session.user = {username: doc.username, email: doc.email, authenticated: true}
       // res.render('index', {firstName: doc.firstName, lastName: doc.lastName, email: doc.email})
       res.redirect('/user')
     }
@@ -112,7 +112,7 @@ router.post('/login', function (req, res) {
     }
     if (doc) {
       // login success
-      req.session.user = {firstName: doc.firstName, lastName: doc.lastName, email: doc.email, authenticated: true}
+      req.session.user = {username: doc.username, email: doc.email, authenticated: true}
       res.redirect('/user')
     } else {
       res.send(false)
@@ -130,8 +130,7 @@ router.post('/signup', function (req, res) {
   var user = req.body
   // var user = {firstName: 'rui', lastName: 'liu', pwd: '123', email: 'rogerliuray@gmail.com'}
   db.user.insert({
-    firstName: user.firstName,
-    lastName: user.lastName,
+    username: user.userName,
     pwd: user.pwd,
     email: user.email,
     activated: false,
