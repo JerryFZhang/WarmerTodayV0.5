@@ -13,7 +13,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 
-  <div class="wrap container">
+  <div class="wrap container" id='compare'>
     <div class="inner row">
       <div class="col">
         <div>WED</div>
@@ -28,6 +28,8 @@
         <span>38&#8451;</span>
       </div>
     </div>
+
+    <div class="inner row"><div class="col"><div>WED</div><div>18</div></div><div><img src="SVG/Cloud-Drizzle-Alt.svg" width="80" height="80" color="white"></img></div><div class="barPadding row"><span>18&#8451;</span><p class='bar' id="rcorners12"></p><span>38&#8451;</span></div></div>
   </div>
 
 
@@ -43,14 +45,6 @@
     align-self: center;
     padding: 2rem;
   }
-
-
-
-
-
-
-
-
 
   .inside {
     margin-right: 10px;
@@ -79,5 +73,129 @@
     height: 20px;
   }
 </style>
+<script>
+var weather = [{
+  time: 255589200,
+  temperatureMax: 0,
+  temperatureMin: -20,
+  icon: "rain"
+}, {
+  time: 255589200,
+  temperatureMax: 30,
+  temperatureMin: 15,
+  icon: "cloudy"
+}, {
+  time: 255589200,
+  temperatureMax: 10,
+  temperatureMin: -20,
+  icon: "snow"
+}, {
+  time: 255589200,
+  temperatureMax: 20,
+  temperatureMin: -40,
+  icon: "wind"
+}, {
+  time: 255589200,
+  temperatureMax: 40,
+  temperatureMin: -50,
+  icon: "clear-day"
+}]
+
+/*
+unit can be "c" "C" "f" "F"
+*/
+function renderingDayInfo(weather, unit) {
+  var celsius = "&#8451;"
+  var fahrenheit = "&#8457;"
+
+  var tunit = celsius
+  if (unit === "c" || unit === "C") {
+    tunit = celsius
+  }
+  if (unit === "f" || unit === "F") {
+    tunit = fahrenheit
+  }
+
+
+  //calculate average temp
+  var min = weather[0].temperatureMin
+  var max = weather[0].temperatureMax
+  var dif = max-min
+  for (let x of weather) {
+    if (x.temperatureMin < min) {
+      min = x.temperatureMin
+    }
+    if (x.temperatureMax > max) {
+      max = x.temperatureMax
+    }
+  }
+  var width0 = 0.00
+  var width1 = 0.00
+  var date
+  var iconFileAddress
+  for (var i = 0; i < weather.length; i++) {
+    width0 = (x.temperatureMin-min)/dif*600
+    width1 = (x.temperatureMax-min)/dif*600
+    date =processDate(x.time)
+    iconFileAddress=
+      $("#compare").append("<div class=\"col-xs-4\"><div class=\"row\">" + (i + 1) + "AM</div><div class=\"row\" style=\"padding-top:" + height + "px\"><canvas class=\"" + weather[i].icon +
+        "\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">" + weather[i].temperature + "" + tunit + "</div></div><!---->");
+  }
+
+  var icons = new Skycons({
+      "color": "white"
+    }),
+    list = [
+      "clear-day", "clear-night", "partly-cloudy-day",
+      "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+      "fog"
+    ],
+    i;
+  for (i = list.length; i--;) {
+    var weatherType = list[i],
+      elements = document.getElementsByClassName(weatherType);
+    for (e = elements.length; e--;) {
+      icons.set(elements[e], weatherType);
+    }
+  }
+  icons.play();
+}
+
+function processDate(dateString){
+  var d = new Date(dateString)
+  var n = d.toString()
+  var res = n.split(" ")
+return res
+}
+function processIcon(icon){
+  switch(icon) {
+    case "snow":
+        return "Cloud-Snow"
+        break;
+    case "clear-day":
+        return "Sun"
+        break;
+    case "clear-night":
+        return "Moon"
+        break;
+    case "partly-cloudy-day":
+        return "Cloud-Sun"
+        break;
+    case "partly-cloudy-night":
+        return "Cloud-Moon"
+        break;
+    case "cloudy":
+        return "Cloud"
+        break;
+    case "rain":
+        return "Sun"
+        break;
+    default:
+        code block
+}
+}
+
+renderingHourInfo(weather, "f")
+</script>
 
 </html>
