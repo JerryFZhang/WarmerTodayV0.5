@@ -13,189 +13,191 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 
-  <div class="wrap container" id='compare'>
-    <div class="inner row">
-      <div class="col">
-        <div>WED</div>
-        <div>18</div>
+  <div class="container" id='compare'>
+    <!-- <div class="row">
+      <div class="inner row">
+        <div class="col">
+          <div>WED</div>
+          <div>18</div>
+        </div>
+        <div><img src="SVG/Cloud-Drizzle-Alt.svg" width="80" height="80" color="white"></img>
+        </div>
+        <div class="barPaddingbox row container" style="padding-left: 100px;"><span class="inside">18&#8451;</span>
+          <div class="barPadding">
+            <p class='bar inside' style="width: 300px;"></p>
+          </div><span class="inside">38&#8451;</span></div>
       </div>
-      <div>
-        <img src="SVG/Cloud-Drizzle-Alt.svg" width="80" height="80" color="white"></img>
-      </div>
-      <div class="barPadding row">
-        <span>18&#8451;</span>
-        <p class='bar' id="rcorners12"></p>
-        <span>38&#8451;</span>
-      </div>
-    </div>
+    </div> -->
 
-    <div class="inner row"><div class="col"><div>WED</div><div>18</div></div><div><img src="SVG/Cloud-Drizzle-Alt.svg" width="80" height="80" color="white"></img></div><div class="barPadding row"><span>18&#8451;</span><p class='bar' id="rcorners12"></p><span>38&#8451;</span></div></div>
+    <!-- <div class=\"container\"><div class=\"row\"><div class=\"col\"><div>WED</div><div>18</div></div><div class=\"col\"><img src=\"SVG/Cloud-Drizzle-Alt.svg\" width=\"80\" height=\"60\" color=\"white\"></img></div><div class=\"barPadding row\" style=\"padding-left: 100px;\"><span>18&#8451;</span><p class=\"bar\"></p><span>38&#8451;</span></div></div></div> -->
+
+
   </div>
 
 
 </body>
 <style>
-  .wrap {
-    display: flex;
-    justify-content: center;
-    background: silver;
-  }
+.wrap {
+  display: flex;
+  justify-content: center;
+  background: silver;
+}
 
-  .inner {
-    align-self: center;
-    padding: 2rem;
-  }
+.inner {
+  align-self: center;
+  padding: 2rem;
+}
 
-  .inside {
-    margin-right: 10px;
-  }
 
-  .border {
-    background-color: grey
-  }
+.inside {
+  margin-right: 10px;
+}
 
-  .barPadding {
-    width: 600px;
-    padding-top: 3px;
-  }
+.border {
+  background-color: grey
+}
 
-  .barContainer {
-    vertical-align: middle;
-  }
-  /*.content {
-    display: inline-block;
-  }*/
+.barPadding {
+  /*border-style: solid;
+    border-color: red;*/
+  width: 600px;
+  padding-top: 18px;
+}
 
-  .bar {
-    border-radius: 20px;
-    background: black;
-    width: 400px;
-    height: 20px;
-  }
+.barContainer {
+  vertical-align: middle;
+}
+/*.content {
+  display: inline-block;
+}*/
+
+.bar {
+  border-radius: 20px;
+  background: black;
+  height: 20px;
+}
 </style>
 <script>
-var weather = [{
-  time: 255589200,
-  temperatureMax: 0,
-  temperatureMin: -20,
-  icon: "rain"
-}, {
-  time: 255589200,
-  temperatureMax: 30,
-  temperatureMin: 15,
-  icon: "cloudy"
-}, {
-  time: 255589200,
-  temperatureMax: 10,
-  temperatureMin: -20,
-  icon: "snow"
-}, {
-  time: 255589200,
-  temperatureMax: 20,
-  temperatureMin: -40,
-  icon: "wind"
-}, {
-  time: 255589200,
-  temperatureMax: 40,
-  temperatureMin: -50,
-  icon: "clear-day"
-}]
 
-/*
-unit can be "c" "C" "f" "F"
-*/
-function renderingDayInfo(weather, unit) {
-  var celsius = "&#8451;"
-  var fahrenheit = "&#8457;"
+//testing
+  var weather = [{
+    time: 255589200,
+    temperatureMax: 0,
+    temperatureMin: -20,
+    icon: "rain"
+  }, {
+    time: 255589200,
+    temperatureMax: 30,
+    temperatureMin: 15,
+    icon: "cloudy"
+  }, {
+    time: 255589200,
+    temperatureMax: 10,
+    temperatureMin: -20,
+    icon: "snow"
+  }, {
+    time: 255589200,
+    temperatureMax: 20,
+    temperatureMin: -40,
+    icon: "wind"
+  }, {
+    time: 255589200,
+    temperatureMax: 40,
+    temperatureMin: -50,
+    icon: "clear-day"
+  }]
 
-  var tunit = celsius
-  if (unit === "c" || unit === "C") {
-    tunit = celsius
-  }
-  if (unit === "f" || unit === "F") {
-    tunit = fahrenheit
-  }
+  /*
+  unit can be "c" "C" "f" "F"
+  */
+  function renderingDayInfo(weather, unit) {
+    var celsius = "&#8451;"
+    var fahrenheit = "&#8457;"
 
-
-  //calculate average temp
-  var min = weather[0].temperatureMin
-  var max = weather[0].temperatureMax
-  var dif = max-min
-  for (let x of weather) {
-    if (x.temperatureMin < min) {
-      min = x.temperatureMin
+    var tunit = celsius
+    if (unit === "c" || unit === "C") {
+      tunit = celsius
     }
-    if (x.temperatureMax > max) {
-      max = x.temperatureMax
+    if (unit === "f" || unit === "F") {
+      tunit = fahrenheit
     }
-  }
-  var width0 = 0.00
-  var width1 = 0.00
-  var date
-  var iconFileAddress
-  for (var i = 0; i < weather.length; i++) {
-    width0 = (x.temperatureMin-min)/dif*600
-    width1 = (x.temperatureMax-min)/dif*600
-    date =processDate(x.time)
-    iconFileAddress=
-      $("#compare").append("<div class=\"col-xs-4\"><div class=\"row\">" + (i + 1) + "AM</div><div class=\"row\" style=\"padding-top:" + height + "px\"><canvas class=\"" + weather[i].icon +
-        "\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">" + weather[i].temperature + "" + tunit + "</div></div><!---->");
-  }
 
-  var icons = new Skycons({
-      "color": "white"
-    }),
-    list = [
-      "clear-day", "clear-night", "partly-cloudy-day",
-      "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-      "fog"
-    ],
-    i;
-  for (i = list.length; i--;) {
-    var weatherType = list[i],
-      elements = document.getElementsByClassName(weatherType);
-    for (e = elements.length; e--;) {
-      icons.set(elements[e], weatherType);
+
+    //calculate average temp
+    var min = weather[0].temperatureMin
+    var max = weather[0].temperatureMax
+    for (let x of weather) {
+      if (x.temperatureMin < min) {
+        min = x.temperatureMin
+      }
+      if (x.temperatureMax > max) {
+        max = x.temperatureMax
+      }
+    }
+    var dif = max - min
+    var width0 = 0.00
+    var width1 = 0.00
+    var date
+    var iconFileAddress
+    for (var i = 0; i < weather.length; i++) {
+    // var i = 1
+      width0 = (weather[i].temperatureMin - min) / dif * 450
+      width1 = (weather[i].temperatureMax - min) / dif * 450-width0
+      date = processDate(weather[i].time)
+      iconFileAddress = processIcon(weather[i].icon)
+      $("#compare").append("<div class=\"container\"><div class=\"row\"><div class=\"col\"><div>" + date[0].toUpperCase() + "</div><div>" +
+        date[2] + "</div></div><div class=\"col\"><img src=\"SVG/" + iconFileAddress + ".svg\" width=\"80\" height=\"60\" color=\"white\"></img></div><div class=\"barPadding row\" style=\"padding-left: " + width0 + "px;\"><span>" +
+        weather[i].temperatureMin + tunit +"</span><p class=\"bar\" style=\"width: " + width1 + "px;\"></p><span>" + weather[i].temperatureMax + tunit + "</span></div></div></div>");
     }
   }
-  icons.play();
-}
 
-function processDate(dateString){
-  var d = new Date(dateString)
-  var n = d.toString()
-  var res = n.split(" ")
-return res
-}
-function processIcon(icon){
-  switch(icon) {
-    case "snow":
+  function processDate(dateString) {
+    var d = new Date(dateString)
+    var n = d.toString()
+    var res = n.split(" ")
+    return res
+  }
+
+  function processIcon(icon) {
+    switch (icon) {
+      case "snow":
         return "Cloud-Snow"
         break;
-    case "clear-day":
+      case "clear-day":
         return "Sun"
         break;
-    case "clear-night":
+      case "clear-night":
         return "Moon"
         break;
-    case "partly-cloudy-day":
+      case "partly-cloudy-day":
         return "Cloud-Sun"
         break;
-    case "partly-cloudy-night":
+      case "partly-cloudy-night":
         return "Cloud-Moon"
         break;
-    case "cloudy":
+      case "cloudy":
         return "Cloud"
         break;
-    case "rain":
-        return "Sun"
+      case "rain":
+        return "Cloud-Rain"
         break;
-    default:
-        code block
-}
-}
+      case "sleet":
+        return "Cloud-Snow"
+        break;
+      case "wind":
+        return "Wind"
+        break;
+      case "fog":
+        return "Cloud-Fog"
+        break;
+      default:
+        return "Sun"
+    }
+  }
 
-renderingHourInfo(weather, "f")
+
+//testing
+  renderingDayInfo(weather,"c")
 </script>
 
 </html>
