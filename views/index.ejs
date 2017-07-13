@@ -5,7 +5,7 @@
         body {
             overflow: hidden;
         }
-        
+
         .noscript-overlay {
             background-color: white;
             bottom: 0;
@@ -15,11 +15,11 @@
             right: 0;
             z-index: 2000;
         }
-        
+
         .noscript-text {
             margin: 50px 50px;
         }
-        
+
         .noscript-font {
             color: #333;
         }
@@ -142,13 +142,18 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#" onclick="openNav()">Login/Signup</a></li>
-                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li><div class="btn-group btn-group-justified" role="group" style="padding:5px" aria-label="...">
+  <div class="btn-group" role="group">
+    <button id='c'type="button" class="btn btn-default">Cº</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button id='f' type="button" class="btn btn-default">Fº</button>
+  </div>
+</div></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">Log out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -178,12 +183,12 @@
             </div>
         </div>
         <div class="tab-pane" id="profile" role="tabpanel"><iframe width='100%' frameBorder='0' style='height: 95vh' src='https://maps.darksky.net/@temperature,53.345,-92.074,2?embed=true&timeControl=true&fieldControl=true&defaultField=temperature&defaultUnits=_c'></iframe> </div>
-        <div class="tab-pane" role="tabpanel"id="wind1">
+        <div class="tab-pane" role="tabpanel"id="wind1" style="padding-top:30px;padding-bottom:30px;">
             <div class="container testimonial-group">
                 <div class="row text-center" id="wind" style="top:0px"></div>
             </div>
         </div>
-        <div class="tab-pane" role="tabpanel" id="humidity1">
+        <div class="tab-pane" role="tabpanel" id="humidity1" style="padding-top:30px;padding-bottom:30px;">
             <div class="container testimonial-group">
                 <div class="row text-center" id="humidity" style="top:0px"></div>
             </div>
@@ -199,6 +204,7 @@
         <div id="infowindow-content"> <img src="" width="16" height="16" id="place-icon"> <span id="place-name" class="title"></span>
             <br> <span id="place-address"></span> </div>
         <script>
+            var lat,lng
             /* Open when someone clicks on the span element */
             function openNav() {
                 document.getElementById("myNav").style.width = "100%";
@@ -249,8 +255,8 @@
                     if (place.geometry.viewport) {
                         console.log(place.geometry.location.lat());
                         console.log(place.geometry.location.lng());
-                        const lat = place.geometry.location.lat()
-                        const lng = place.geometry.location.lng()
+                         lat = place.geometry.location.lat()
+                         lng = place.geometry.location.lng()
                         reload(lat, lng, unit);
                         //            map.fitBounds(place.geometry.viewport);
                     }
@@ -390,7 +396,7 @@
                 });
                 $('#login-submit').click(function (e) {
                     var u = $(  "input[type=text][name=username_l]").val();
-                    var p = $(  "input[type=password][name=password_l]").val();                    
+                    var p = $(  "input[type=password][name=password_l]").val();
                     if (u == "" || p == "") {
                         console.log(u +p);
                         alert("Please Enter all Required Information");
@@ -404,12 +410,12 @@
                 });
                 $('#register-submit').click(function (e) {
                     var u = $(  "input[type=text][name=username]").val();
-                    var p = $(  "input[type=password][name=password]").val();                    
+                    var p = $(  "input[type=password][name=password]").val();
                     var pc = $(  "input[type=password][name=confirm-password]").val();
                     var e = $(  "input[type=email][name=email]").val();
 
                     if (u == "" || p == "" || e == "" || p != pc) {
-                        
+
                         console.log(u+p+pc+e);
                         console.log("u+p+pc+e");
                         alert("Missing Required Information or Password don't match.");
@@ -423,6 +429,16 @@
                     }
                 });
             });
+
+            $('#c').click(function (e) {
+                unit = 'c'
+                reload(lat, lng, unit)
+            });
+            $('#f').click(function (e) {
+                unit = 'f'
+                reload(lat, lng, unit)
+            });
+
         </script>
 </body>
 <script src="reload.js"></script>

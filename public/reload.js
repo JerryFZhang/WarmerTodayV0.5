@@ -253,7 +253,7 @@ function reload (lat, lng, unit) {
     } else if (unit === 'f' || unit === 'F') {
       tunit = fahrenheit
     }
-    $('span.inner').replaceWith('<span class="inner"><h3 style="text-align:right"><span>' + roundTemp(data.currently.temperature) + tunit + '</span></h3><h5 style="text-align:right">' + 'H: ' + roundTemp(data.daily.data[0].temperatureMax) + tunit + 'L: ' + roundTemp(data.daily.data[0].temperatureMin) + unit + '</h5></span>')
+    $('span.inner').replaceWith('<span class="inner"><h3 style="text-align:right"><span>' + roundTemp(data.currently.temperature) + tunit + '</span></h3><h5 style="text-align:right">' + 'H: ' + roundTemp(data.daily.data[0].temperatureMax) + tunit + ' L: ' + roundTemp(data.daily.data[0].temperatureMin) + tunit + '</h5></span>')
     $('span.sum').replaceWith('<span class="sum"><h5>' + data.currently.summary + '</h5></span>')
     $.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE', function (data2) {
       $('span.location2').replaceWith('<span class="location2"><h3>' + data2.results[4].formatted_address + '</h3></span>')
