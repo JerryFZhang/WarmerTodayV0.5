@@ -44,11 +44,7 @@ transporter.verify(function (error, success) {
 /* GET home page. */
 router.get('/', function (req, res, next) {
   // res.send(true)
-  res.render('signinup', { title: 'Express' })
-})
-
-router.get('/hack', function (req, res, next) {
-  res.render('index', { title: 'Express' })
+res.render('index', { title: 'Express' })
 })
 
 router.get('/checkEmail', function (req, res) {

@@ -124,24 +124,13 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Locations <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> <span class="PrimaryLocation" >Current</span></a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a PrimaryLocation href="#">Another action</a></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
                     <form class="navbar-form navbar-left" role="search">
                         <div class="input-group">
-                            <input type="text" class="controls" id="pac-input" placeholder='Search location'> <i class="fa fa-search" aria-hidden="true"></i><span class="input-group-btn">
+                            <input type="text" class="controls" id="pac-input" placeholder='Search location'><span class="input-group-btn">
                             </span> </div>
                     </form>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" onclick="openNav()">Login/Signup</a></li>
                     <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><div class="btn-group btn-group-justified" role="group" style="padding:5px" aria-label="...">
@@ -153,7 +142,7 @@
   </div>
 </div></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Log out</a></li>
+                            <li><a href="#" onclick="openNav()">Login/Signup</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -404,7 +393,7 @@
                     else {
                         $.post('/login', {
                             username: u
-                            , pwd: p
+                            , password: p
                         }, function (data) {});
                     }
                 });
@@ -423,7 +412,7 @@
                     else {
                         $.post('/signup', {
                             username: u
-                            , pwd: p
+                            , password: p
                             , email: e
                         }, function (data) {});
                     }

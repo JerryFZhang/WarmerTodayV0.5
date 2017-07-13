@@ -15,14 +15,18 @@ router.get('/', function (req, res, next) {
 
 /* log out */
 router.get('/logout', function (req, res) {
+    console.log("logging out");
   req.session.destroy(function (err) {
     if (err) {
+                console.log("heere")
       logger.error('logout: ' + err)
     } else {
+        console.log("ljdiusjduaoudjsoa")
       sess = undefined
-      res.render('index')
+  res.render('index', { title: 'Express' })
     }
   })
+    res.redirect('/');
 })
 
 router.post('/resetpwd', function (req, res, next) {
