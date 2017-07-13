@@ -253,3 +253,47 @@ textarea {
 .col-xs-4:nth-child(2n+1) { background: #eeeeee;}
 .col-xs-4:nth-child(2n+2) { background: #fefefe;}
 /*scrollable css*/
+
+/*bar*/
+.wrap {
+  display: flex;
+  justify-content: center;
+  background: silver;
+}
+
+.inner {
+  align-self: center;
+  padding: 2rem;
+}
+
+
+.inside {
+  margin-right: 10px;
+}
+
+.border {
+  background-color: grey
+}
+
+.barPadding {
+  /*border-style: solid;
+    border-color: red;*/
+  width: 600px;
+  padding-top: 18px;
+}
+
+.barContainer {
+  vertical-align: middle;
+}
+/*.content {
+  display: inline-block;
+}*/
+
+.bar {
+  border-radius: 20px;
+  background: black;
+    margin-left: 10px;
+    margin-right: 10px;
+  height: 20px;
+}
+/*/bar*/
