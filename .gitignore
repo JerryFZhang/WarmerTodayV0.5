@@ -11,3 +11,7 @@ package-lock.json
 *.log
 
 *.log
+
+*.log
+
+logs/WeatherApp.log
