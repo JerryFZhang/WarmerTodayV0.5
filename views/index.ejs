@@ -81,8 +81,8 @@
                     <form class="navbar-form navbar-left" role="search">
                         <div class="input-group">
                             <input type="text" class="controls" id="pac-input" placeholder="Search  location"> <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default">
-                            <span class="glyphicon glyphicon-search"></span> </button>
+                        <a id="searchTrigger" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search"></span> </a>
                             </span>
                         </div>
                     </form>
@@ -122,7 +122,7 @@
         <div class="tab-pane active" id="home" role="tabpanel" style="padding-top:30px;padding-bottom:30px;">
             <div class="container testimonial-group">
                 <div class="row text-center" id="forecastDay" style="top:0px"></div>
-            </div>     
+            </div>
         </div>
         <div class="tab-pane" id="profile" role="tabpanel">dfgd </div>
         <div class="tab-pane" id="messages" role="tabpanel">asdasdasd </div>
@@ -189,7 +189,7 @@
                             console.log(place.geometry.location.lng());
                             const lat = place.geometry.location.lat()
                             const lng = place.geometry.location.lng()
-                            reload(lat,lng,'c');
+                            reload(lat,lng,unit);
                             //            map.fitBounds(place.geometry.viewport);
                         }
                         else {
@@ -230,6 +230,11 @@
                         });
                     });
                 }
+
+
+                $("#searchTrigger").on('click',function(){
+                    console.log('blah');
+                })
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaf4F_4S87KsLLSq9yhRwl01wkBVeaEh0&libraries=places&callback=initMap" async defer></script>
         <script>
@@ -296,8 +301,8 @@
                 var avg = sum / 24
                 var height = 0.00
                 for (var i = 0; i < weather.length; i++) {
-                    console.log(i);
-                    console.log(weather[i]);
+                    // console.log(i);
+                    // console.log(weather[i]);
                     height = (1 - (weather[i].temperature - min) / (max - min)) * 200
                     if (i < 12) {
                         $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">" + (i + 1) + "AM</div><div class=\"row\" style=\"padding-top:" + height + "px\"><canvas class=\"" + weather[i].icon + "\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">" + weather[i].temperature + "" + tunit + "</div></div><!---->");
@@ -323,7 +328,7 @@
                 }
                 icons.play();
             }
-            renderingHourInfo(weather, "f")
+            // renderingHourInfo(weather, "f")
                 //functions that adding hour info
         </script>
 </body>
