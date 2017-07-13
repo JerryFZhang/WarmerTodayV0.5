@@ -163,7 +163,9 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a> </li>
-            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#map" role="tab">Map</a> </li>
+<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Messages</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a> </li>
         </ul>
     </div>
     <!-- Tab panes -->
@@ -173,7 +175,10 @@
                 <div class="row text-center" id="forecastDay" style="top:0px"></div>
             </div>
         </div>
-        <div class="tab-pane" id="map" role="tabpanel"><iframe width='100%' frameBorder='0' style='height: 95vh' src='https://maps.darksky.net/@temperature,45.421,-75.690,7,11?embed=true&timeControl=true&fieldControl=true&defaultField=temperature&defaultUnits=_c'></iframe></div>
+        <div class="tab-pane" id="profile" role="tabpanel"><iframe width='100%' frameBorder='0' style='height: 95vh' src='https://maps.darksky.net/@temperature,45.421,-75.690,7,11?embed=true&timeControl=true&fieldControl=true&defaultField=temperature&defaultUnits=_c'></iframe> </div>
+        <div class="tab-pane" id="messages" role="tabpanel">asdasdasd </div>
+        <div class="tab-pane" id="settings" role="tabpanel"> asdasd </div>
+
         <div class="container">
             <hr>
         </div>
@@ -377,6 +382,9 @@
 		$(this).addClass('active');
 		e.preventDefault();
 	});
+        $('#register-submit').clicl(function(e){
+            
+        })
 
 });
 
