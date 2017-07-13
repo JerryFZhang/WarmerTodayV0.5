@@ -131,78 +131,8 @@
             <hr>
         </div>
         <!--bar start-->
-        <div class="container" id='compare'>
-                </div>
-                
+        <div class="container" id='compare'></div>
         <!--bar end-->
-        <style>
-            /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-
-            #map {
-                height: 100%;
-            }
-            /* Optional: Makes the sample page fill the window. */
-
-            html,
-            body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-
-            #description {
-                font-weight: 300;
-            }
-
-            #infowindow-content .title {
-                font-weight: bold;
-            }
-
-            #infowindow-content {
-                display: none;
-            }
-
-            #map #infowindow-content {
-                display: inline;
-            }
-
-            .pac-card {
-                margin: 10px 10px 0 0;
-                border-radius: 2px 0 0 2px;
-                box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-                background-color: #fff;
-            }
-
-            #pac-container {
-                margin-right: 12px;
-            }
-
-            .pac-controls {
-                display: inline-block;
-                padding: 5px 11px;
-            }
-
-            .pac-controls label {}
-
-            #pac-input {
-                background-color: #fff;
-                text-overflow: ellipsis;
-                width: 350px;
-            }
-
-            #title {
-                color: #fff;
-                background-color: #4d90fe;
-                font-weight: 500;
-                padding: 6px 12px;
-            }
-        </style>
-        </head>
-
-        <body>
             <div id="map"></div>
             <div id="infowindow-content"> <img src="" width="16" height="16" id="place-icon"> <span id="place-name" class="title"></span>
                 <br> <span id="place-address"></span> </div>
@@ -221,8 +151,8 @@
                 function initMap() {
                     var map = new google.maps.Map(document.getElementById('map'), {
                         center: {
-                            lat: -33.8688
-                            , lng: 151.2195
+                            lat: 43.7111117
+                            , lng: -79.2845772
                         }
                         , zoom: 13
                     });
@@ -302,7 +232,7 @@
                 }
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaf4F_4S87KsLLSq9yhRwl01wkBVeaEh0&libraries=places&callback=initMap" async defer></script>
-        </body>
+        
         <script>
             //dynamically set skycons by class name
             var list = [
@@ -378,7 +308,6 @@
                     }
                 }
                 var icons = new Skycons({
-                        "color": "#579fff"
                     })
                     , list = [
             "clear-day", "clear-night", "partly-cloudy-day"
@@ -398,5 +327,6 @@
             renderingHourInfo(weather, "f")
                 //functions that adding hour info
         </script>
+</body>
     <script src="reload.js"></script>
 </html>
