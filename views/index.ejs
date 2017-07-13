@@ -38,11 +38,14 @@
 
 <head>
     <title>Weather </title>
+    <!--css-->
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <!--    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+ 
+    <!--js-->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -51,144 +54,307 @@
 </head>
 
 <body>
-    
-    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-        <div class="collapse navbar-collapse" id="navbar"> <a class="navbar-brand" href="#">A Bookstore</a>
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active"> <a class="nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home<span class="sr-only">(current)</span></a> </li>
-                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list" aria-hidden="true"></i> Categories</a>
-                    <div class="dropdown-menu"> <a class="dropdown-item" href="/category">Arts & Photography</a> <a class="dropdown-item" href="/category">Biographies & Memoirs</a> <a class="dropdown-item" href="/category">Business & Investing</a> <a class="dropdown-item" href="/category">Calendars</a> <a class="dropdown-item" href="/category">Children's Books</a> <a class="dropdown-item" href="/category">Christian Books & Bibles</a> <a class="dropdown-item" href="/category">Comics & Graphic Novels</a> <a class="dropdown-item" href="/category">Computers & Technology</a> <a class="dropdown-item" href="/category">Cookbooks, Food & Wine</a> <a class="dropdown-item" href="/category">Crafts, Hobbies & Home</a> <a class="dropdown-item" href="/category">Education & Reference</a> <a class="dropdown-item" href="/category">Erotica</a> <a class="dropdown-item" href="/category">French Books (Livres en français)</a> <a class="dropdown-item" href="/category">Gay & Lesbian</a> <a class="dropdown-item" href="/category">Health, Fitness & Dieting</a> <a class="dropdown-item" href="/category">History</a> <a class="dropdown-item" href="/category">Humour & Entertainment</a> <a class="dropdown-item" href="/category">Law</a> <a class="dropdown-item" href="/category">Literature & Fiction</a> <a class="dropdown-item" href="/category">Medical Books</a> <a class="dropdown-item" href="/category">Mystery, Thriller & Suspense</a> <a class="dropdown-item" href="/category">Parenting & Relationships</a> <a class="dropdown-item" href="/category">Politics & Social Sciences</a> <a class="dropdown-item" href="/category">Professional & Technical</a> <a class="dropdown-item" href="/category">Religion & Spirituality</a> <a class="dropdown-item" href="/category">Romance</a> <a class="dropdown-item" href="/category">Science & Math</a> <a class="dropdown-item" href="/category">Science Fiction & Fantasy</a> <a class="dropdown-item" href="/category">Self-Help</a> <a class="dropdown-item" href="/category">Sports & Outdoors</a> <a class="dropdown-item" href="/category">Teens</a> <a class="dropdown-item" href="/category">Textbooks</a> <a class="dropdown-item" href="/category">Travel</a>
-                        <div class="dropdown-divider"></div> <a class="dropdown-item" href="/category">All Books</a> </li>
-                <li class="nav-item"> <a class="nav-link" href="/cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> My Cart<span class="badge badge-pill badge-danger">2</span> </a> </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search"> <a href="/author" role="button" class="btn btn-default my-2 my-sm-0" style="background-color:#ccc;color:#555">Search</a> </form>
-            </div>
-    </nav>
+    <nav class="navbar navbar-inverse" role="navigation">
 
+    <div class="container-fluid">
+        <!-- add header -->
+        <div class="navbar-header">
+            <!-- add search form -->
+            <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="controls" id="pac-input" placeholder="Search this site">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
 
     <div>
         <div class="col-xs-12 col-sm-6 col-md-8"> <span class="location2">Loading location</span> <span class="sum">Loading summary</span> </div>
-        <div class="col-xs-6 col-md-4"> <span class="inner">Loading weather information.</span>
-                <span class="location">Loading location.</span>
-            </div>
-            <div>
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                    <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-                    <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-                    <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
-                </ul>
-            </div>
-            <div class="tab-content">
-                <div id="home" class="tab-pane fade in active">
-                    <div class="container testimonial-group">
-                        <div class="row text-center" id="forecastDay" style="padding-top:300px top:0px"></div>
-                </div>
-                </div>
-                <div id="menu1" class="tab-pane fade">
-<div class="container testimonial-group">
-                        <div class="row text-center" id="forecastDay" style="padding-top:300px top:0px"></div>
-                </div>
-                </div>
-                <div id="menu2" class="tab-pane fade">
-                                        <div class="container testimonial-group">
-                        <div class="row text-center" id="forecastDay" style="padding-top:300px top:0px">
-                        </div>
-                </div>
-                </div>
-                <div id="menu3" class="tab-pane fade">
-                                        <div class="container testimonial-group">
-                        <div class="row text-center" id="forecastDay" style="padding-top:300px top:0px">
-                        </div>
-                </div>
-                </div>
-            </div>
+        <div class="col-xs-6 col-md-4"> <span class="inner">Loading weather information.</span> <span class="location">Loading location.</span> </div>
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a> </li>
+                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a> </li>
+                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Messages</a> </li>
+                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a> </li>
+            </ul>
         </div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="home" role="tabpanel">
+                <div class="container testimonial-group">
+                    <div class="row text-center" id="forecastDay" style="padding-top:300px top:0px"></div>
+                </div>
+            </div>
+            <div class="tab-pane" id="profile" role="tabpanel">dfgd </div>
+            <div class="tab-pane" id="messages" role="tabpanel">asdasdasd </div>
+            <div class="tab-pane" id="settings" role="tabpanel"> asdasd </div>
+           <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #description {
+        font-weight: 300;
+      }
 
-    </body>
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }
+
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+      }
+
+      #pac-container {
+        margin-right: 12px;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      .pac-controls label {
+      }
+
+      #pac-input {
+        background-color: #fff;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <img src="" width="16" height="16" id="place-icon">
+      <span id="place-name"  class="title"></span><br>
+      <span id="place-address"></span>
+    </div>
+
+    <script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13
+        });
+        var card = document.getElementById('pac-card');
+        var input = document.getElementById('pac-input');
+        var types = document.getElementById('type-selector');
+        var strictBounds = document.getElementById('strict-bounds-selector');
+
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        // Bind the map's bounds (viewport) property to the autocomplete object,
+        // so that the autocomplete requests use the current map bounds for the
+        // bounds option in the request.
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        var infowindowContent = document.getElementById('infowindow-content');
+        infowindow.setContent(infowindowContent);
+        var marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, -29)
+        });
+
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+          }
+
+          // If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+              console.log(place.geometry.location.lat());
+               console.log(place.geometry.location.lng());
+//            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);  // Why 17? Because it looks good.
+          }
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+
+          var address = '';
+          if (place.address_components) {
+            address = [
+              (place.address_components[0] && place.address_components[0].short_name || ''),
+              (place.address_components[1] && place.address_components[1].short_name || ''),
+              (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+          }
+
+          infowindowContent.children['place-icon'].src = place.icon;
+          infowindowContent.children['place-name'].textContent = place.name;
+          infowindowContent.children['place-address'].textContent = address;
+          infowindow.open(map, marker);
+        });
+
+        // Sets a listener on a radio button to change the filter type on Places
+        // Autocomplete.
+        function setupClickListener(id, types) {
+          var radioButton = document.getElementById(id);
+          radioButton.addEventListener('click', function() {
+            autocomplete.setTypes(types);
+          });
+        }
+
+        setupClickListener('changetype-all', []);
+        setupClickListener('changetype-address', ['address']);
+        setupClickListener('changetype-establishment', ['establishment']);
+        setupClickListener('changetype-geocode', ['geocode']);
+
+        document.getElementById('use-strict-bounds')
+            .addEventListener('click', function() {
+              console.log('Checkbox clicked! New state=' + this.checked);
+              autocomplete.setOptions({strictBounds: this.checked});
+            });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaf4F_4S87KsLLSq9yhRwl01wkBVeaEh0&libraries=places&callback=initMap"
+        async defer></script>
+  </body>
 <script>
-
-//dynamically set skycons by class name
-var list  = [
-          "clear-day", "clear-night", "partly-cloudy-day",
-          "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-          "fog"
+    //dynamically set skycons by class name
+    var list = [
+          "clear-day", "clear-night", "partly-cloudy-day"
+          , "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind"
+          , "fog"
         ]
-//dynamically set skycons by class name
-//functions that adding hour info
-
-
-//testing
-var weather = [{temperature:0,icon:"rain"},{temperature:10,icon:"cloudy"},{temperature:20,icon:"snow"},{temperature:30,icon:"wind"},{temperature:25,icon:"clear-day"}]
-for(var a = 0;a<24;a++){
-  var temp = Math.floor(Math.random() * (40 - (-40) + 1)) -40
-  var index = Math.floor(Math.random() * (9 - 0 + 1)) + 0
-  weather.push({temperature:temp,icon:list[index]})
-}
-//testing
-
-/*
-unit can be "c" "C" "f" "F"
-*/
-function renderingHourInfo(weather,unit){
-  var celsius = "&#8451;"
-  var fahrenheit = "&#8457;"
-
-  var tunit = celsius
-  if(unit ==="c"||unit==="C"){
-    tunit = celsius
-  }
-  if(unit ==="f"||unit==="F"){
-    tunit = fahrenheit
-  }
-
-
-  //calculate average temp
-  var sum=0
-  var min=weather[0].temperature
-  var max=weather[0].temperature
-  for(let x of weather){
-      if(x.temperature<min){
-        min=x.temperature
-      }
-      if(x.temperature>max){
-        max=x.temperature
-      }
-      sum+=x.temperature
-  }
-  var avg = sum/24
-  var height = 0.00
-  for(var i =0;i<weather.length;i++){
-      console.log(i);
-      console.log(weather[i]);
-      height = (1-(weather[i].temperature-min)/(max-min))*200
-      if(i<12){
-        $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">"+(i+1)+"AM</div><div class=\"row\" style=\"padding-top:"+height+"px\"><canvas class=\""+weather[i].icon+"\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">"+weather[i].temperature+""+tunit+"</div></div><!---->");
-      }else{
-        $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">"+(i+1-12)+"PM</div><div class=\"row\" style=\"padding-top:"+height+"px\"><canvas class=\""+weather[i].icon+"\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">"+weather[i].temperature+""+tunit+"</div></div><!---->");
-      }
-  }
-
-  var icons = new Skycons({"color": "black"}),
-  list  = [
-            "clear-day", "clear-night", "partly-cloudy-day",
-            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-            "fog"
-          ],
-          i;
-  for(i = list.length; i--; ) {
-      var weatherType = list[i],
-          elements = document.getElementsByClassName( weatherType );
-      for (e = elements.length; e--;){
-          icons.set( elements[e], weatherType );
-      }
-  }
-  icons.play();
-}
-
-renderingHourInfo(weather,"f")
-//functions that adding hour info
+        //dynamically set skycons by class name
+        //functions that adding hour info
+        //testing
+    var weather = [{
+        temperature: 0
+        , icon: "rain"
+    }, {
+        temperature: 10
+        , icon: "cloudy"
+    }, {
+        temperature: 20
+        , icon: "snow"
+    }, {
+        temperature: 30
+        , icon: "wind"
+    }, {
+        temperature: 25
+        , icon: "clear-day"
+    }]
+    for (var a = 0; a < 24; a++) {
+        var temp = Math.floor(Math.random() * (40 - (-40) + 1)) - 40
+        var index = Math.floor(Math.random() * (9 - 0 + 1)) + 0
+        weather.push({
+            temperature: temp
+            , icon: list[index]
+        })
+    }
+    //testing
+    /*
+    unit can be "c" "C" "f" "F"
+    */
+    function renderingHourInfo(weather, unit) {
+        var celsius = "&#8451;"
+        var fahrenheit = "&#8457;"
+        var tunit = celsius
+        if (unit === "c" || unit === "C") {
+            tunit = celsius
+        }
+        if (unit === "f" || unit === "F") {
+            tunit = fahrenheit
+        }
+        //calculate average temp
+        var sum = 0
+        var min = weather[0].temperature
+        var max = weather[0].temperature
+        for (let x of weather) {
+            if (x.temperature < min) {
+                min = x.temperature
+            }
+            if (x.temperature > max) {
+                max = x.temperature
+            }
+            sum += x.temperature
+        }
+        var avg = sum / 24
+        var height = 0.00
+        for (var i = 0; i < weather.length; i++) {
+            console.log(i);
+            console.log(weather[i]);
+            height = (1 - (weather[i].temperature - min) / (max - min)) * 200
+            if (i < 12) {
+                $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">" + (i + 1) + "AM</div><div class=\"row\" style=\"padding-top:" + height + "px\"><canvas class=\"" + weather[i].icon + "\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">" + weather[i].temperature + "" + tunit + "</div></div><!---->");
+            }
+            else {
+                $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">" + (i + 1 - 12) + "PM</div><div class=\"row\" style=\"padding-top:" + height + "px\"><canvas class=\"" + weather[i].icon + "\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">" + weather[i].temperature + "" + tunit + "</div></div><!---->");
+            }
+        }
+        var icons = new Skycons({
+                "color": "black"
+            })
+            , list = [
+            "clear-day", "clear-night", "partly-cloudy-day"
+            , "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind"
+            , "fog"
+          ]
+            , i;
+        for (i = list.length; i--;) {
+            var weatherType = list[i]
+                , elements = document.getElementsByClassName(weatherType);
+            for (e = elements.length; e--;) {
+                icons.set(elements[e], weatherType);
+            }
+        }
+        icons.play();
+    }
+    renderingHourInfo(weather, "f")
+        //functions that adding hour info
 </script>
+
 </html>
