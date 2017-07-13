@@ -103,7 +103,12 @@ router.post('/login', function (req, res) {
   console.log('POST - localhost:3000/login')
     // //only search by id.
   var data = req.body
+  console.log(data);
     // Query Body
+    var data = {
+    username: data.username_l,
+    password: data.password_l
+    }
   db.user.findOne(data, function (err, doc) {
     if (err) {
       logger.error('login error: ' + err)
@@ -122,16 +127,18 @@ router.post('/login', function (req, res) {
 
 // router.get('/signup', function (req, res) {
 router.post('/signup', function (req, res) {
-  // new token
+  
+// new token
   var token = crypto.randomBytes(64).toString('hex')
 
   // insert user into db
 
   var user = req.body
+  console.log(user);
   // var user = {firstName: 'rui', lastName: 'liu', pwd: '123', email: 'rogerliuray@gmail.com'}
   db.user.insert({
     username: user.userName,
-    pwd: user.pwd,
+    password: user.pwd,
     email: user.email,
     activated: false,
     secretToken: token,
