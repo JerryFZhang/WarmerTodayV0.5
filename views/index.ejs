@@ -53,58 +53,125 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse" role="navigation">
+    <!-- The overlay -->
+    <div id="myNav" class="overlay">
+        <!-- Button to close the overlay navigation --><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <!-- Overlay content -->
+        <div class="overlay-content"> <a href="#">About</a> <a href="#">Services</a> <a href="#">Clients</a> <a href="#">Contact</a> </div>
+    </div>
+    <!-- Use any element to open/show the overlay navigation menu -->
+    <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <!-- add header -->
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <!-- add search form -->
-                <form class="navbar-form" role="search">
-                    <div class="input-group">
-                        <input type="text" class="controls" id="pac-input" placeholder="Search this site"> <span class="input-group-btn">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="#">A Weather Application</a> </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Locations <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="input-group">
+                            <input type="text" class="controls" id="pac-input" placeholder="Search  location"> <span class="input-group-btn">
                         <button type="submit" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span> </button>
-                        </span>
-                    </div>
-                </form>
+                            </span>
+                        </div>
+                    </form>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Login/Signup</a></li>
+                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container-fluid -->
     </nav>
     <div class="container">
-        <div class="col-xs-12 col-sm-6 col-md-8"> <span class="location2">Loading location</span> <span class="sum">Loading summary</span> </div>
-        <div class="col-xs-6 col-md-4"> <span class="inner">Loading weather information.</span> <span class="location">Loading location.</span> </div>
+        <div class="col-xs-6 col-sm-6 col-md-6"> <span class="location2">Loading location</span> <span class="sum">Loading summary</span> </div>
+        <div class="col-xs-6 col-md-6 col-md-6"> <span class="inner">Loading weather information.</span> <span class="location">Loading location.</span> </div>
     </div>
-<!--bar start-->
     <div class="container">
-        <div class="col-xs-6 col-sm-2 col-md-2" style="padding-top: 9px;">
-            <div>WED</div>
-            <div>18</div>
-        </div>
-        <div class="col-xs-6 col-sm-2 col-md-2"><img src="SVG/Cloud-Drizzle-Alt.svg" width="80" height="60" color="white"></div>
-        <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>18℃</span></div>
-        <div class="col-xs-6 col-sm-4 col-md-6" style="padding-top: 18px;">
-            <p class="bar" id="rcorners12"></p>
-        </div>
-        <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>38℃</span></div>
-    </div>
-    <!--bar end-->
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a> </li>
-        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a> </li>
-        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Messages</a> </li>
-        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a> </li>
-    </ul>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Messages</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a> </li>
+        </ul>
     </div>
     <!-- Tab panes -->
     <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel">
+        <div class="tab-pane active" id="home" role="tabpanel" style="padding-top:30px;padding-bottom:30px">
             <div class="container testimonial-group">
-                <div class="row text-center" id="forecastDay" style="padding-top:300px top:0px"></div>
+                <div class="row text-center" id="forecastDay" style="top:0px"></div>
             </div>
         </div>
         <div class="tab-pane" id="profile" role="tabpanel">dfgd </div>
         <div class="tab-pane" id="messages" role="tabpanel">asdasdasd </div>
         <div class="tab-pane" id="settings" role="tabpanel"> asdasd </div>
+        <div class="container">
+            <hr>
+        </div>
+        <!--bar start-->
+        <div class="container">
+            <div class="col-xs-6 col-sm-2 col-md-2" style="padding-top: 9px;">
+                <div>WED</div>
+                <div>18</div>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2"><img src="SVG/Cloud-Drizzle-Alt.svg" width="80" height="60" color="white"></div>
+            <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>18℃</span></div>
+            <div class="col-xs-6 col-sm-4 col-md-6" style="padding-top: 18px; width: 45%;">
+                <p class="bar" id="rcorners12"></p>
+            </div>
+            <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>38℃</span></div>
+        </div>
+        <!--bar end-->
+        <!--bar start-->
+        <div class="container">
+            <div class="col-xs-6 col-sm-2 col-md-2" style="padding-top: 9px;">
+                <div>WED</div>
+                <div>18</div>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2"><img src="SVG/Cloud-Drizzle-Alt.svg" width="80" height="60" color="white"></div>
+            <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>18℃</span></div>
+            <div class="col-xs-6 col-sm-4 col-md-6" style="padding-top: 18px; width: 30%;">
+                <p class="bar" id="rcorners12"></p>
+            </div>
+            <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>38℃</span></div>
+        </div>
+        <!--bar end-->
+        <!--bar start-->
+        <div class="container">
+            <div class="col-xs-6 col-sm-2 col-md-2" style="padding-top: 9px;">
+                <div>WED</div>
+                <div>18</div>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2"><img src="SVG/Cloud-Drizzle-Alt.svg" width="80" height="60" color="white"></div>
+            <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>18℃</span></div>
+            <div class="col-xs-6 col-sm-4 col-md-6" style="padding-top: 18px;padding-left:10%; width: 35%;">
+                <p class="bar" id="rcorners12"></p>
+            </div>
+            <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>38℃</span></div>
+        </div>
         <style>
             /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -160,7 +227,7 @@
             #pac-input {
                 background-color: #fff;
                 text-overflow: ellipsis;
-                width: 400px;
+                width: 350px;
             }
             
             #title {
@@ -177,6 +244,14 @@
             <div id="infowindow-content"> <img src="" width="16" height="16" id="place-icon"> <span id="place-name" class="title"></span>
                 <br> <span id="place-address"></span> </div>
             <script>
+                /* Open when someone clicks on the span element */
+                function openNav() {
+                    document.getElementById("myNav").style.width = "100%";
+                }
+                /* Close when someone clicks on the "x" symbol inside the overlay */
+                function closeNav() {
+                    document.getElementById("myNav").style.width = "0%";
+                }
                 // This example requires the Places library. Include the libraries=places
                 // parameter when you first load the API. For example:
                 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
