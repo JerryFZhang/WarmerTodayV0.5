@@ -178,6 +178,7 @@ router.post('/today', function (req, res) {
     .extendHourly(true)             // optional: extend, boolean, refer to API documentation.
     .get()                          // execute your get request.
     .then(weather => {                  // handle your success response.
+      console.log(weather.daily);
       res.send(weather)
       // console.log(weather)
     })
