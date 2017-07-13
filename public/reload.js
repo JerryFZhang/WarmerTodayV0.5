@@ -64,18 +64,19 @@
       width0 = (weather[i].temperatureMin - min) / dif * 47
       width1 = (weather[i].temperatureMax - min) / dif * 100
       date = processDate(weather[i].time)
+
       iconFileAddress = processIcon(weather[i].icon)
       // $('#compare').append('<div class="container"><div class="row"><div class="col"><div>' + date[0].toUpperCase() + '</div><div>' +
       //   date[2] + '</div></div><div class="col"><img src="SVG/' + iconFileAddress + '.svg" width="80" height="60" color="white"></img></div><div class="barPadding row" style="padding-left: ' + width0 + 'px;"><span>' +
       //   weather[i].temperatureMin + tunit + '</span><p class="bar" style="width: ' + width1 + 'px;"></p><span>' + weather[i].temperatureMax + tunit + '</span></div></div></div>')
       $('#compare').append(' <div class="container"><div class="col-xs-6 col-sm-2 col-md-2" style="padding-top: 9px;"><div>' + date[0].toUpperCase() + '</div><div>' +
         date[2] + '</div></div><div class="col-xs-6 col-sm-2 col-md-2"><img src="SVG/' + iconFileAddress + '.svg" width="80" height="60" color="white"></div><div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>' +
-        weather[i].temperatureMin + tunit + '</span></div><div class="col-xs-6 col-sm-4 col-md-6" style="padding-top: 18px; padding-left:' + width0 + '%;"><p class="bar" style="width:' + width1 + '%"></p></div><div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>' + weather[i].temperatureMax + tunit + '</span></div></div>')
+        roundTemp(weather[i].temperatureMin) + tunit + '</span></div><div class="col-xs-6 col-sm-4 col-md-6" style="padding-top: 18px; padding-left:' + width0 + '%;"><p class="bar" style="width:' + width1 + '%"></p></div><div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>' + roundTemp(weather[i].temperatureMax) + tunit + '</span></div></div>')
     }
   }
 
   function processDate (dateString) {
-    var d = new Date(dateString)
+    var d = new Date(dateString*1000)
     var n = d.toString()
     var res = n.split(' ')
     return res
@@ -190,9 +191,9 @@
       // console.log(weather[i])
       height = (1 - (weather[i].temperature - min) / (max - min)) * 200
       if (i < 12) {
-        $('#forecastDay').append('<div class="col-xs-4"><div class="row">' + (i + 1) + 'AM</div><div class="row" style="padding-top:' + height + 'px"><canvas class="' + weather[i].icon + '" width="50" height="50"></canvas></div><div class="row">' + weather[i].temperature + '' + tunit + '</div></div><!---->')
+        $('#forecastDay').append('<div class="col-xs-4"><div class="row">' + (i + 1) + 'AM</div><div class="row" style="padding-top:' + height + 'px"><canvas class="' + weather[i].icon + '" width="50" height="50"></canvas></div><div class="row">' + roundTemp(weather[i].temperature) + '' + tunit + '</div></div><!---->')
       } else {
-        $('#forecastDay').append('<div class="col-xs-4"><div class="row">' + (i + 1 - 12) + 'PM</div><div class="row" style="padding-top:' + height + 'px"><canvas class="' + weather[i].icon + '" width="50" height="50"></canvas></div><div class="row">' + weather[i].temperature + '' + tunit + '</div></div><!---->')
+        $('#forecastDay').append('<div class="col-xs-4"><div class="row">' + (i + 1 - 12) + 'PM</div><div class="row" style="padding-top:' + height + 'px"><canvas class="' + weather[i].icon + '" width="50" height="50"></canvas></div><div class="row">' + roundTemp(weather[i].temperature) + '' + tunit + '</div></div><!---->')
       }
     }
     var icons = new Skycons({
@@ -218,9 +219,13 @@
 // graph 1
   var currentHourlyData, currentDayData
 
+  function roundTemp (data) {
+    // console.log(data)
+    return data.toFixed(0)
+  }
   function reload (lat, lng, unit) {
-    $("#forecastDay").empty()
-    $("#compare").empty()
+    $('#forecastDay').empty()
+    $('#compare').empty()
     $.post('/today', {
       lat: lat,
       lng: lng
@@ -232,4 +237,4 @@
     })
   }
 
-  reload(43.7111117, -79.2845772,'c')
+  reload(43.7111117, -79.2845772, 'c')
