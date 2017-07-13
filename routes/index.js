@@ -164,20 +164,26 @@ router.post('/signup', function (req, res) {
 
 router.post('/today', function (req, res) {
   let now = new Date()
+  var unit
     // date, string 'YYYY-MM-DD'.
   let requestedTime = now.toISOString().substr(0, 10)
+  if(req.body.unit==='c'){
+    unit = 'ca'
+  }else{
+    unit = 'us'
+  }
 
   forecast
     .latitude(req.body.lat)            // required: latitude, string.
     .longitude(req.body.lng)          // required: longitude, string.
 //    .time(requestedTime)             // optional: date, string 'YYYY-MM-DD'.
-    .units('ca')                    // optional: units, string, refer to API documentation.
+    .units(unit)                    // optional: units, string, refer to API documentation.
     .language('en')                 // optional: language, string, refer to API documentation.
     .exclude('')      // optional: exclude, string, refer to API documentation.
     .extendHourly(true)             // optional: extend, boolean, refer to API documentation.
     .get()                          // execute your get request.
     .then(weather => {                  // handle your success response.
-      console.log(weather.daily);
+      // console.log(weather.daily);
       res.send(weather)
       // console.log(weather)
     })

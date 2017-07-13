@@ -1,5 +1,5 @@
 var currentWeather
-var unit = 'c'
+var unit = 'f'
 $.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE', {}, function (data) {
     // console.log(data);
     let lat, lng
