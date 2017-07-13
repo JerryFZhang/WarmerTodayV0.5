@@ -1,11 +1,13 @@
 var currentWeather
+var unit = 'c'
 $.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE', {}, function (data) {
-    console.log(data);
+    // console.log(data);
     let lat, lng
     lat = parseFloat(JSON.stringify(data.location.lat))
     lng = parseFloat(JSON.stringify(data.location.lng))
     $('span.location').replaceWith('')
-    getWeather(lat, lng)
+    // getWeather(lat, lng)
+    reload(lat,lng, unit)
     $.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE', function (data) {
         $('span.location2').replaceWith('<span class="location2"><h3>' + data.results[4].formatted_address + '</h3></span>')
     })
