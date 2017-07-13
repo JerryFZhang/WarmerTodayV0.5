@@ -193,6 +193,7 @@ function renderingHourInfo (weather, unit, attribute, id) {
     } else {
       $('#' + id).append('<div class="col-xs-4"><div class="row">' + (index + 1 - 12) % 12 + 'PM</div><div class="row" style="padding-top:' + height + 'px"><canvas class="' + weather[i].icon + '" width="50" height="50"></canvas></div><div class="row">' + roundTemp(weather[i][attribute]) + '' + tunit + '</div></div><!---->')
     }
+    index++
   }
   var icons = new Skycons({
       'color': 'black'
