@@ -171,7 +171,7 @@ router.post('/today', function (req, res) {
   forecast
     .latitude(req.body.lat)            // required: latitude, string.
     .longitude(req.body.lng)          // required: longitude, string.
-    .time(requestedTime)             // optional: date, string 'YYYY-MM-DD'.
+//    .time(requestedTime)             // optional: date, string 'YYYY-MM-DD'.
     .units('ca')                    // optional: units, string, refer to API documentation.
     .language('en')                 // optional: language, string, refer to API documentation.
     .exclude('')      // optional: exclude, string, refer to API documentation.

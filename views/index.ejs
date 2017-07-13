@@ -5,7 +5,7 @@
         body {
             overflow: hidden;
         }
-        
+
         .noscript-overlay {
             background-color: white;
             bottom: 0;
@@ -15,11 +15,11 @@
             right: 0;
             z-index: 2000;
         }
-        
+
         .noscript-text {
             margin: 50px 50px;
         }
-        
+
         .noscript-font {
             color: #333;
         }
@@ -70,10 +70,9 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Locations <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> <span class="PrimaryLocation" >Current</span></a></li>
                             <li role="separator" class="divider"></li>
+                            <li><a PrimaryLocation href="#">Another action</a></li>
                             <li><a href="#">Separated link</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">One more separated link</a></li>
@@ -123,7 +122,7 @@
         <div class="tab-pane active" id="home" role="tabpanel" style="padding-top:30px;padding-bottom:30px">
             <div class="container testimonial-group">
                 <div class="row text-center" id="forecastDay" style="top:0px"></div>
-            </div>
+            </div>     
         </div>
         <div class="tab-pane" id="profile" role="tabpanel">dfgd </div>
         <div class="tab-pane" id="messages" role="tabpanel">asdasdasd </div>
@@ -132,78 +131,45 @@
             <hr>
         </div>
         <!--bar start-->
-        <div class="container">
-            <div class="col-xs-6 col-sm-2 col-md-2" style="padding-top: 9px;">
-                <div>WED</div>
-                <div>18</div>
-            </div>
-            <div class="col-xs-6 col-sm-2 col-md-2"><img src="SVG/Cloud-Drizzle-Alt.svg" width="80" height="60" color="white"></div>
-            <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>18℃</span></div>
-            <div class="col-xs-6 col-sm-4 col-md-6" style="padding-top: 18px; width: 45%;">
-                <p class="bar" id="rcorners12"></p>
-            </div>
-            <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>38℃</span></div>
-        </div>
+        <div class="container" id='compare'>
+                  <!--bar start-->
+                      <!-- <div class=\"container\"><div class=\"col-xs-6 col-sm-2 col-md-2\" style=\"padding-top: 9px;\"><div>WED</div><div>18</div></div><div class=\"col-xs-6 col-sm-2 col-md-2\"><img src=\"SVG/Cloud-Drizzle-Alt.svg\" width=\"80\" height=\"60\" color=\"white\"></div><div class=\"col-xs-3 col-sm-1 col-md-1\" style=\"padding-top: 18px;\"><span>18℃</span></div><div class=\"col-xs-6 col-sm-4 col-md-6\" style=\"padding-top: 18px; padding-left:0%;\"><p class=\"bar\" style=\"width:100%\"></p></div><div class=\"col-xs-3 col-sm-1 col-md-1\" style=\"padding-top: 18px;\"><span>38℃</span></div></div> -->
+                      <!--bar end-->
+                </div>
+                <script src="reload.js"></script>
         <!--bar end-->
-        <!--bar start-->
-        <div class="container">
-            <div class="col-xs-6 col-sm-2 col-md-2" style="padding-top: 9px;">
-                <div>WED</div>
-                <div>18</div>
-            </div>
-            <div class="col-xs-6 col-sm-2 col-md-2"><img src="SVG/Cloud-Drizzle-Alt.svg" width="80" height="60" color="white"></div>
-            <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>18℃</span></div>
-            <div class="col-xs-6 col-sm-4 col-md-6" style="padding-top: 18px; width: 30%;">
-                <p class="bar" id="rcorners12"></p>
-            </div>
-            <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>38℃</span></div>
-        </div>
-        <!--bar end-->
-        <!--bar start-->
-        <div class="container">
-            <div class="col-xs-6 col-sm-2 col-md-2" style="padding-top: 9px;">
-                <div>WED</div>
-                <div>18</div>
-            </div>
-            <div class="col-xs-6 col-sm-2 col-md-2"><img src="SVG/Cloud-Drizzle-Alt.svg" width="80" height="60" color="white"></div>
-            <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>18℃</span></div>
-            <div class="col-xs-6 col-sm-4 col-md-6" style="padding-top: 18px;padding-left:10%; width: 35%;">
-                <p class="bar" id="rcorners12"></p>
-            </div>
-            <div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>38℃</span></div>
-        </div>
         <style>
             /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-            
+
             #map {
                 height: 100%;
             }
             /* Optional: Makes the sample page fill the window. */
-            
+
             html,
             body {
                 height: 100%;
                 margin: 0;
                 padding: 0;
             }
-            
+
             #description {
                 font-weight: 300;
             }
-            
+
             #infowindow-content .title {
                 font-weight: bold;
             }
-            
+
             #infowindow-content {
                 display: none;
             }
-            
+
             #map #infowindow-content {
                 display: inline;
             }
-            
+
             .pac-card {
                 margin: 10px 10px 0 0;
                 border-radius: 2px 0 0 2px;
@@ -212,24 +178,24 @@
                 box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
                 background-color: #fff;
             }
-            
+
             #pac-container {
                 margin-right: 12px;
             }
-            
+
             .pac-controls {
                 display: inline-block;
                 padding: 5px 11px;
             }
-            
+
             .pac-controls label {}
-            
+
             #pac-input {
                 background-color: #fff;
                 text-overflow: ellipsis;
                 width: 350px;
             }
-            
+
             #title {
                 color: #fff;
                 background-color: #4d90fe;
@@ -412,7 +378,7 @@
                     }
                 }
                 var icons = new Skycons({
-                        "color": "black"
+                        "color": "#579fff"
                     })
                     , list = [
             "clear-day", "clear-night", "partly-cloudy-day"
