@@ -1,16 +1,14 @@
 var currentWeather
 
 $.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE', {}, function (data) {
-  // console.log(data)
+   console.log(data);
   let lat, lng
   lat = parseFloat(JSON.stringify(data.location.lat))
   lng = parseFloat(JSON.stringify(data.location.lng))
   $('span.location').replaceWith('')
   getWeather(lat, lng)
   $.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&key=AIzaSyAOUiSYFZUxtHi6zk3cqIYl7TOyPusI6fE', function (data) {
-    var locationHTML = '<span">' + data.results[0].address_components[3].long_name + ', ' + data.results[0].address_components[5].long_name + '</span><br/>'
-    $('span.location2').replaceWith("<h3>"+locationHTML+"</h3>")
-        // var results = data.results;
+    $('span.location2').replaceWith('<span class="location2"><h3>'+data.results[4].formatted_address+'</h3></span>')
   })
 })
 
@@ -47,7 +45,7 @@ function getWeather (lat, lng) {
     //             //        Print extremas
     // console.log(data.daily.data[0].summary.temperatureMax + ' is current high ' + data.daily.data[0].summary.temperatureMin + 'is current low.')
                 // Delete the warning message, replace with currentn wather information.
-    $('span.inner').replaceWith('<h3 style="text-align:right"><span>' + roundTemp(data.currently.temperature) + ' Cº</span></h3><h5 style="text-align:right">' + 'H: ' + roundTemp(data.daily.data[0].temperatureMax) + ' Cº ' + 'L: ' + roundTemp(data.daily.data[0].temperatureMin) + ' Cº</h5>'); $('span.sum').replaceWith('<h5>' + data.currently.summary + '</h5>')
+    $('span.inner').replaceWith('<span class="inner"><h3 style="text-align:right"><span>' + roundTemp(data.currently.temperature) + ' Cº</span></h3><h5 style="text-align:right">' + 'H: ' + roundTemp(data.daily.data[0].temperatureMax) + ' Cº ' + 'L: ' + roundTemp(data.daily.data[0].temperatureMin) + ' Cº</h5></span>'); $('span.sum').replaceWith('<span class="sum"><h5>' + data.currently.summary + '</h5></span>')
   })
 }
 
