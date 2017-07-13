@@ -53,131 +53,106 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse" role="navigation">
+    <!-- The overlay -->
+    <div id="myNav" class="overlay">
+        <!-- Button to close the overlay navigation --><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <!-- Overlay content -->
+        <div class="overlay-content"> <a href="#">About</a> <a href="#">Services</a> <a href="#">Clients</a> <a href="#">Contact</a> </div>
+    </div>
+    <!-- Use any element to open/show the overlay navigation menu -->
+    <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <!-- add header -->
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <!-- add search form -->
-                <form class="navbar-form" role="search">
-                    <div class="input-group">
-                        <input type="text" class="controls" id="pac-input" placeholder="Search this site"> <span class="input-group-btn">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="#">A Weather Application</a> </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Locations <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> <span class="PrimaryLocation" >Current</span></a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a PrimaryLocation href="#">Another action</a></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="input-group">
+                            <input type="text" class="controls" id="pac-input" placeholder="Search  location"> <span class="input-group-btn">
                         <button type="submit" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span> </button>
-                        </span>
-                    </div>
-                </form>
+                            </span>
+                        </div>
+                    </form>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Login/Signup</a></li>
+                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container-fluid -->
     </nav>
     <div class="container">
-        <div class="col-xs-12 col-sm-6 col-md-8"> <span class="location2">Loading location</span> <span class="sum">Loading summary</span> </div>
-        <div class="col-xs-6 col-md-4"> <span class="inner">Loading weather information.</span> <span class="location">Loading location.</span> </div>
+        <div class="col-xs-6 col-sm-6 col-md-6"> <span class="location2">Loading location</span> <span class="sum">Loading summary</span> </div>
+        <div class="col-xs-6 col-md-6 col-md-6"> <span class="inner">Loading weather information.</span> <span class="location">Loading location.</span> </div>
     </div>
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a> </li>
-        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a> </li>
-        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Messages</a> </li>
-        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a> </li>
-    </ul>
+    <div class="container">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Home</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Messages</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a> </li>
+        </ul>
     </div>
     <!-- Tab panes -->
     <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel">
+        <div class="tab-pane active" id="home" role="tabpanel" style="padding-top:30px;padding-bottom:30px;">
             <div class="container testimonial-group">
-                <div class="row text-center" id="forecastDay" style="padding-top:300px top:0px"></div>
-            </div>
-
-                <div class="container" id='compare'>
-                  <!--bar start-->
-                      <!-- <div class=\"container\"><div class=\"col-xs-6 col-sm-2 col-md-2\" style=\"padding-top: 9px;\"><div>WED</div><div>18</div></div><div class=\"col-xs-6 col-sm-2 col-md-2\"><img src=\"SVG/Cloud-Drizzle-Alt.svg\" width=\"80\" height=\"60\" color=\"white\"></div><div class=\"col-xs-3 col-sm-1 col-md-1\" style=\"padding-top: 18px;\"><span>18℃</span></div><div class=\"col-xs-6 col-sm-4 col-md-6\" style=\"padding-top: 18px; padding-left:0%;\"><p class=\"bar\" style=\"width:100%\"></p></div><div class=\"col-xs-3 col-sm-1 col-md-1\" style=\"padding-top: 18px;\"><span>38℃</span></div></div> -->
-                      <!--bar end-->
-                </div>
-                <script src="reload.js"></script>
+                <div class="row text-center" id="forecastDay" style="top:0px"></div>
+            </div>     
         </div>
         <div class="tab-pane" id="profile" role="tabpanel">dfgd </div>
         <div class="tab-pane" id="messages" role="tabpanel">asdasdasd </div>
         <div class="tab-pane" id="settings" role="tabpanel"> asdasd </div>
-        <style>
-            /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-
-            #map {
-                height: 100%;
-            }
-            /* Optional: Makes the sample page fill the window. */
-
-            html,
-            body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-
-            #description {
-                font-weight: 300;
-            }
-
-            #infowindow-content .title {
-                font-weight: bold;
-            }
-
-            #infowindow-content {
-                display: none;
-            }
-
-            #map #infowindow-content {
-                display: inline;
-            }
-
-            .pac-card {
-                margin: 10px 10px 0 0;
-                border-radius: 2px 0 0 2px;
-                box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-                background-color: #fff;
-            }
-
-            #pac-container {
-                margin-right: 12px;
-            }
-
-            .pac-controls {
-                display: inline-block;
-                padding: 5px 11px;
-            }
-
-            .pac-controls label {}
-
-            #pac-input {
-                background-color: #fff;
-                text-overflow: ellipsis;
-                width: 400px;
-            }
-
-            #title {
-                color: #fff;
-                background-color: #4d90fe;
-                font-weight: 500;
-                padding: 6px 12px;
-            }
-        </style>
-        </head>
-
-        <body>
+        <div class="container">
+            <hr>
+        </div>
+        <!--bar start-->
+        <div class="container" id='compare'></div>
+        <!--bar end-->
             <div id="map"></div>
             <div id="infowindow-content"> <img src="" width="16" height="16" id="place-icon"> <span id="place-name" class="title"></span>
                 <br> <span id="place-address"></span> </div>
             <script>
+                /* Open when someone clicks on the span element */
+                function openNav() {
+                    document.getElementById("myNav").style.width = "100%";
+                }
+                /* Close when someone clicks on the "x" symbol inside the overlay */
+                function closeNav() {
+                    document.getElementById("myNav").style.width = "0%";
+                }
                 // This example requires the Places library. Include the libraries=places
                 // parameter when you first load the API. For example:
                 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
                 function initMap() {
                     var map = new google.maps.Map(document.getElementById('map'), {
                         center: {
-                            lat: -33.8688
-                            , lng: 151.2195
+                            lat: 43.7111117
+                            , lng: -79.2845772
                         }
                         , zoom: 13
                     });
@@ -212,6 +187,9 @@
                         if (place.geometry.viewport) {
                             console.log(place.geometry.location.lat());
                             console.log(place.geometry.location.lng());
+                            const lat = place.geometry.location.lat()
+                            const lng = place.geometry.location.lng()
+                            reload(lat,lng,'c');
                             //            map.fitBounds(place.geometry.viewport);
                         }
                         else {
@@ -254,5 +232,100 @@
                 }
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaf4F_4S87KsLLSq9yhRwl01wkBVeaEh0&libraries=places&callback=initMap" async defer></script>
-        </body>
+        <script>
+            //dynamically set skycons by class name
+            var list = [
+          "clear-day", "clear-night", "partly-cloudy-day"
+          , "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind"
+          , "fog"
+        ]
+                //dynamically set skycons by class name
+                //functions that adding hour info
+                //testing
+            var weather = [{
+                temperature: 0
+                , icon: "rain"
+    }, {
+                temperature: 10
+                , icon: "cloudy"
+    }, {
+                temperature: 20
+                , icon: "snow"
+    }, {
+                temperature: 30
+                , icon: "wind"
+    }, {
+                temperature: 25
+                , icon: "clear-day"
+    }]
+            for (var a = 0; a < 24; a++) {
+                var temp = Math.floor(Math.random() * (40 - (-40) + 1)) - 40
+                var index = Math.floor(Math.random() * (9 - 0 + 1)) + 0
+                weather.push({
+                    temperature: temp
+                    , icon: list[index]
+                })
+            }
+            //testing
+            /*
+            unit can be "c" "C" "f" "F"
+            */
+            function renderingHourInfo(weather, unit) {
+                var celsius = "&#8451;"
+                var fahrenheit = "&#8457;"
+                var tunit = celsius
+                if (unit === "c" || unit === "C") {
+                    tunit = celsius
+                }
+                if (unit === "f" || unit === "F") {
+                    tunit = fahrenheit
+                }
+                //calculate average temp
+                var sum = 0
+                var min = weather[0].temperature
+                var max = weather[0].temperature
+                for (let x of weather) {
+                    if (x.temperature < min) {
+                        min = x.temperature
+                    }
+                    if (x.temperature > max) {
+                        max = x.temperature
+                    }
+                    sum += x.temperature
+                }
+                var avg = sum / 24
+                var height = 0.00
+                for (var i = 0; i < weather.length; i++) {
+                    console.log(i);
+                    console.log(weather[i]);
+                    height = (1 - (weather[i].temperature - min) / (max - min)) * 200
+                    if (i < 12) {
+                        $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">" + (i + 1) + "AM</div><div class=\"row\" style=\"padding-top:" + height + "px\"><canvas class=\"" + weather[i].icon + "\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">" + weather[i].temperature + "" + tunit + "</div></div><!---->");
+                    }
+                    else {
+                        $("#forecastDay").append("<div class=\"col-xs-4\"><div class=\"row\">" + (i + 1 - 12) + "PM</div><div class=\"row\" style=\"padding-top:" + height + "px\"><canvas class=\"" + weather[i].icon + "\" width=\"50\" height=\"50\"></canvas></div><div class=\"row\">" + weather[i].temperature + "" + tunit + "</div></div><!---->");
+                    }
+                }
+                var icons = new Skycons({
+                    })
+                    , list = [
+            "clear-day", "clear-night", "partly-cloudy-day"
+            , "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind"
+            , "fog"
+          ]
+                    , i;
+                for (i = list.length; i--;) {
+                    var weatherType = list[i]
+                        , elements = document.getElementsByClassName(weatherType);
+                    for (e = elements.length; e--;) {
+                        icons.set(elements[e], weatherType);
+                    }
+                }
+                icons.play();
+            }
+            renderingHourInfo(weather, "f")
+                //functions that adding hour info
+        </script>
+</body>
+    <script src="reload.js"></script>
 </html>
