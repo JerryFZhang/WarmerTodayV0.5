@@ -61,13 +61,16 @@
     var iconFileAddress
     for (var i = 0; i < weather.length; i++) {
     // var i = 1
-      width0 = (weather[i].temperatureMin - min) / dif * 450
-      width1 = (weather[i].temperatureMax - min) / dif * 450 - width0
+      width0 = (weather[i].temperatureMin - min) / dif * 47
+      width1 = (weather[i].temperatureMax - min) / dif * 100
       date = processDate(weather[i].time)
       iconFileAddress = processIcon(weather[i].icon)
-      $('#compare').append('<div class="container"><div class="row"><div class="col"><div>' + date[0].toUpperCase() + '</div><div>' +
-        date[2] + '</div></div><div class="col"><img src="SVG/' + iconFileAddress + '.svg" width="80" height="60" color="white"></img></div><div class="barPadding row" style="padding-left: ' + width0 + 'px;"><span>' +
-        weather[i].temperatureMin + tunit + '</span><p class="bar" style="width: ' + width1 + 'px;"></p><span>' + weather[i].temperatureMax + tunit + '</span></div></div></div>')
+      // $('#compare').append('<div class="container"><div class="row"><div class="col"><div>' + date[0].toUpperCase() + '</div><div>' +
+      //   date[2] + '</div></div><div class="col"><img src="SVG/' + iconFileAddress + '.svg" width="80" height="60" color="white"></img></div><div class="barPadding row" style="padding-left: ' + width0 + 'px;"><span>' +
+      //   weather[i].temperatureMin + tunit + '</span><p class="bar" style="width: ' + width1 + 'px;"></p><span>' + weather[i].temperatureMax + tunit + '</span></div></div></div>')
+      $('#compare').append(' <div class="container"><div class="col-xs-6 col-sm-2 col-md-2" style="padding-top: 9px;"><div>' + date[0].toUpperCase() + '</div><div>' +
+        date[2] + '</div></div><div class="col-xs-6 col-sm-2 col-md-2"><img src="SVG/' + iconFileAddress + '.svg" width="80" height="60" color="white"></div><div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>' +
+        weather[i].temperatureMin + tunit + '</span></div><div class="col-xs-6 col-sm-4 col-md-6" style="padding-top: 18px; padding-left:' + width0 + '%;"><p class="bar" style="width:' + width1 + '%"></p></div><div class="col-xs-3 col-sm-1 col-md-1" style="padding-top: 18px;"><span>' + weather[i].temperatureMax + tunit + '</span></div></div>')
     }
   }
 
