@@ -229,13 +229,18 @@ function reload (lat, lng, unit) {
   $('#humidity').empty()
   $.post('/today', {
     lat: lat,
-    lng: lng
+    lng: lng,
+    unit: unit
   }, function (data) {
     // console.log('data ', data)
     currentHourlyData = data.hourly.data
     currentDayData = data.daily.data
     renderingHourInfo(currentHourlyData, unit, 'temperature', 'forecastDay')
-    renderingHourInfo(currentHourlyData, 'km/h', 'windSpeed', 'wind')
+    if (unit === 'c') {
+      renderingHourInfo(currentHourlyData, 'km/h', 'windSpeed', 'wind')
+    } else if (unit === 'f') {
+      renderingHourInfo(currentHourlyData, 'mph', 'windSpeed', 'wind')
+    }
     for (var g = 0; g < currentHourlyData.length; g++) {
       currentHourlyData[g].humidity = 100 * currentHourlyData[g].humidity
       // console.log(currentHourlyData[g])
